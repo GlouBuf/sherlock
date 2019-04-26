@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import argparse
 from datetime import datetime, timedelta, timezone
-from suspects import *
-from configuration import *
+'''from suspects import *
+from configuration import *'''
 
 if __name__ == '__main__':
     # try:
@@ -23,7 +23,11 @@ if __name__ == '__main__':
     parser.add_argument('-lat', '--latitude', help = "latitude de la scène de crime",required = True, type = float)
     parser.add_argument('-lng', '--longitude', help = "longitude de la scène de crime",required = True, type = float)
 
-    args = parser.parse_args()
+    '''args = parser.parse_args()
+    d= args.date
+    print("date = " + d)'''
+
+
 
     # TODO: Stocker les paramètres importants dans un objet Configuration accessible depuis tous les modules du programme
 

@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
-import math
 import sys
-from PyQt5.QtCore import QUrl
+'''from PyQt5.QtCore import QUrl
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtWidgets import QApplication
 import folium
 import googlemaps
 import os
-from configuration import *
+from configuration import *'''
 import tempfile
 import pathlib
 from math import asin, sqrt, sin, cos, radians
@@ -36,7 +35,7 @@ class Location():
 
     # TODO: Créer des attributs *privés* permettant de stocker la clef (api_key) pour l'accès à l'API de Google et l'objet Client (module googlemaps) correspondant (api_client)
     # TODO: Créer la méthode correspondante : set_api_key (*optionnel* : et __check_api_init pour vérifier que les attributs ci-dessus ont bien été initialisés)
-    def set_api_key(self):
+    def set_api_key(self, key):
         pass
 
     # TODO: Implémenter le constructeur et les getters
@@ -66,9 +65,9 @@ class LocationSample():
     # TODO: Implémenter le constructeur ainsi que les getters
     # TODO: Définir les opérateurs de comparaison
     def __init__(self, date : datetime, location):
-        if not isinstance(self.__date, datetime) :
+        if not isinstance(date, datetime) :
             raise Exception
-        elif not isinstance(self.__location, Location) :
+        elif not isinstance(location, Location) :
             raise Exception
         self.__date = date
         self.__location = location
@@ -97,7 +96,7 @@ class LocationSample():
 
     def __lt__(self, other):
         if isinstance(other, LocationSample):
-            if self.__date - other.get_timestamp() < 0:
+            if self.__date - other.get_timestamp() < timedelta(0):
                 return True
             else:
                 return False
@@ -118,6 +117,19 @@ class LocationSample():
             return True
         else :
             return False
+
+
+    '''renvoie une représentation HTML de l’objet LocationSample'''
+    def get_descritption(self):
+        #stateHTML = "LocationStample [datetime : " + self.__date.strftime("%d-%m-%Y, à %H:%M:%S") + ", Location [" + str(self.__location) + "]]"
+
+        stateHTML = "<ul><li><b>Date</b> : " + self.__date.strftime("%d-%m-%Y, à %H:%M:%S")
+        stateHTML = stateHTML + "</li><li><b>Position</b> : Lng : " + str(self.__location.get_longitude())
+        stateHTML = stateHTML + " Lat : " +  str(self.__location.get_latitude()) + "</li></ul>"
+
+        return stateHTML
+
+
 
 
 # TODO: Définir la classe abstraite LocationProvider qui permet de produire une liste d'objets LocationSample
@@ -221,12 +233,52 @@ class LocationProvider():
                       file=sys.stderr)
 
     # TODO: Implémenter la méthode get_surrounding_temporal_location_samples qui prend en paramètre un datetime et renvoie les objets LocationSample (via get_location_samples) situés juste avant et après le datetime
-    def get_surrouding_temporal_location_samples(self):
-        pass
+    def get_surrouding_temporal_location_samples(self, date : datetime):
+        # on recupère les LocationSample
+        ls = self.get_location_samples()
+        ls.sort()
+        #liste contenant les LS avant ou apres date
+        avant = list(filter(lambda x: x.get_timestamp() < date, ls))
+        apres = list(filter(lambda x: x.get_timestamp() > date, ls))
+        # Pour tester
+        Avant = list(map(lambda x: str(x), avant))
+        Apres = list(map(lambda x: str(x), apres))
+        #print(Avant, Apres)
+
+        #renvoi l'élément juste avant et celui juste après date
+        return (avant[-1], apres[0])
+
+
+
+
 
     # TODO: Implémenter la méthode could_have_been_there qui prend en paramètre un LocationSample et renvoie si un suspect a eu le temps de s'y rendre
-    def could_have_been_there(self):
-        pass
+    def could_have_been_there(self, crime : LocationSample):
+        # crime = la date et le lieu du crime
+
+        # Plus proches LocationSample d'un suspect (ceux qui sont juste avant et après la date du crime)
+        date_crime = crime.get_timestamp()
+        plusproche_ls = self.get_surrouding_temporal_location_samples(date_crime)
+
+        # Calcul des temps pour que ces suspects aient pu se rendre sur le lieu/date du crime
+        ls1 = plusproche_ls[0]
+        ls2 = plusproche_ls[1]
+
+        lieu_crime = crime.get_location()
+        dist_et_temps1 = lieu_crime.get_travel_distance_and_time(ls1.get_location())
+        dist_et_temps2 = lieu_crime.get_travel_distance_and_time(ls2.get_location())
+        temps1 = dist_et_temps1[1]
+        temps2 = dist_et_temps2[1]
+
+        #temps entre les dernieres positions connues avant et apres le crime
+        delta_t = ls2.get_timestamp() - ls1.get_timestamp()
+
+        # on renvoie True si le temps pour aller de la derniere position connue avant le crime ls1
+        # à celle après le crime ls2
+        # est supérieur au temps que suspect aurait mis faire le détour par le lieu du crime (ls1 -> crime -> ls2)
+        return (temps1 + temps2) < delta_t 
+
+
 
     # TODO: Définir la méthode str de sorte à afﬁcher un objet LocationProvider sous la forme suivante :
     # LocationProvider (5 location samples)
@@ -264,6 +316,7 @@ if __name__ == '__main__':
      print(sample1.get_location())
      print(sample1.get_timestamp())
      print(sample1)
+     print("HTML : " + sample1.get_descritption())
 
     # sample2 = LocationSample(datetime(2017, 3, 3, 14, 56, 5), lausanne)
     # print(sample1 < sample2)
