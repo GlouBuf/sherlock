@@ -1,0 +1,6 @@
+exifread
+folium
+googlemaps
+pyqt5==5.10
+requests
+tweepy
