@@ -276,8 +276,7 @@ class LocationProvider():
         # on renvoie True si le temps pour aller de la derniere position connue avant le crime ls1
         # à celle après le crime ls2
         # est supérieur au temps que suspect aurait mis faire le détour par le lieu du crime (ls1 -> crime -> ls2)
-        # commentaire de papa
-        return (temps1 + temps2) < delta_t 
+        return (temps1 + temps2) < delta_t
 
 
 
