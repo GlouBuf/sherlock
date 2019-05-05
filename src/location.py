@@ -12,7 +12,8 @@ import tempfile
 import pathlib
 from math import asin, sqrt, sin, cos, radians
 from _datetime import *
-
+import copy
+from utils import *
 
 # TODO: Définir la classe Location désignant des objets contenant une latitude et une longitude
 class Location():
@@ -141,6 +142,15 @@ class LocationProvider():
     def __init__(self):
         pass
 
+    def __str__(self):
+        return self.__class__.__name__ + " (" + str(len(self.get_location_samples())) + " location samples)"
+
+    def __add__(self, other):
+        if isinstance(other, LocationProvider) :
+            return CompositeLocationProvider(self, other)
+        else :
+            raise TypeError
+
     # TODO: Spécifier l'existence d'une méthode abstraite get_location_samples
     def get_location_samples(self):
         raise NotImplementedError
@@ -243,13 +253,14 @@ class LocationProvider():
         # Pour tester
         Avant = list(map(lambda x: str(x), avant))
         Apres = list(map(lambda x: str(x), apres))
-        #print(Avant, Apres)
 
-        #renvoi l'élément juste avant et celui juste après date
-        return (avant[-1], apres[0])
-
-
-
+        if len(avant) != 0 and len(apres) != 0 :
+            # renvoie l'élément juste avant et celui juste après date
+            return (avant[-1], apres[0])
+        elif len(apres) == 0 :
+            return (avant[-1], None)
+        else :
+            return (None, apres[0])
 
 
     # TODO: Implémenter la méthode could_have_been_there qui prend en paramètre un LocationSample et renvoie si un suspect a eu le temps de s'y rendre
@@ -286,52 +297,88 @@ class LocationProvider():
 
 # TODO: Créer une classe qui implémente le patron de conception Composite pour la classe LocationProvider
 # La classe CompositeLocationProvider contient "deux" LocationProvider
-class CompositeLocationProvider():
-    pass
+class CompositeLocationProvider(LocationProvider):
     # TODO: Définir le constructeur
+    def __init__(self, lp1 : LocationProvider, lp2 : LocationProvider):
+        super().__init__()
+        self.__lp1 = lp1
+        self.__lp2 = lp2
 
     # TODO: Implémenter la méthode get_location_samples
+    def get_location_samples(self):
+        liste = self.__lp1.get_location_samples() + self.__lp2.get_location_samples()
+        liste.sort()
+        return liste
+
+
 
     # TODO: Définir la méthode str
+    def __str__(self):
+        ls = self.get_location_samples()
+        # Pour avoir un affichage comme dans l'énoncé, il faudra que les sous classe de LocationProvider
+        # redéfinissent __str__
+        return "CompositeLocationProvider (" + str(len(self.get_location_samples())) + " location samples)" + \
+               "\n" +  self.indent(str(self.__lp1)) + "\n" + self.indent(str(self.__lp2))
+
 
 
 # TODO: Implémenter la classe ListLocationProvider
-class ListLocationProvider():
-    pass
+class ListLocationProvider(LocationProvider):
     # TODO: Définir le constructeur contenant une liste de LocationSample
+    def __init__(self, list_location_samples):
+        list_location_samples.sort()
+        self.__list_location_samples = list_location_samples
 
-    # TODO: Implémenter la méthode get_location_sample qui renvoie la liste de LocationSample
-
+    # TODO: Implémenter la méthode get_location_samples qui renvoie la liste de LocationSample
+    def get_location_samples(self):
+        return copy.deepcopy(self.__list_location_samples)
 
 if __name__ == '__main__':
     # Tester l'implémentation de cette classe avec les instructions de ce bloc main (le résultat attendu est affiché ci-dessous)
     # Configuration.get_instance().add_element("verbose", True)
     # Location.set_api_key('AIzaSyBsgJp_3ElinD9-T5r2Fbcg0AABR7caito')
 
-     paris = Location(48.854788, 2.347557)
-     lausanne = Location(46.517738, 6.632233)
-     print(lausanne.get_name())
+    paris = Location(48.854788, 2.347557)
+    lausanne = Location(46.517738, 6.632233)
+    #print(lausanne.get_name())
 
-     sample1 = LocationSample(datetime(2017, 3, 3, 12, 25), paris)
-     print(sample1.get_location())
-     print(sample1.get_timestamp())
-     print(sample1)
-     print("HTML : " + sample1.get_descritption())
+    sample1 = LocationSample(datetime(2017, 3, 3, 12, 25), paris)
+    '''print(sample1.get_location())
+    print(sample1.get_timestamp())
+    print(sample1)
+    print("HTML : " + sample1.get_descritption())'''
 
-    # sample2 = LocationSample(datetime(2017, 3, 3, 14, 56, 5), lausanne)
-    # print(sample1 < sample2)
+    sample2 = LocationSample(datetime(2017, 3, 3, 14, 56, 5), lausanne)
+    #print(sample1 < sample2)
 
-    # a = [sample2, sample1]
-    # a.sort()
+    a = [sample2, sample1]
+    a.sort()
 
-    # print([str(x) for x in a])
+    #print([str(x) for x in a])
 
-    # crime = LocationSample(datetime(2017, 3, 31, 18, 30, 20), Location(46.520336, 6.572844))
-    # print(crime.get_location().get_travel_distance_and_time(Location(46.521045, 6.574664)))
+    crime = LocationSample(datetime(2017, 3, 31, 18, 30, 20), Location(46.520336, 6.572844))
+    #print(crime.get_location().get_travel_distance_and_time(Location(46.521045, 6.574664)))
 
-    # locationsamples = ListLocationProvider([sample1, sample2])
-    # print(locationsamples.get_location_samples())
-    # print(locationsamples + locationsamples)
+    locationsamples = ListLocationProvider([sample1, sample2])
+    #print(locationsamples.get_location_samples())
+
+    #locationsamples.show_location_samples()
+    result = locationsamples.get_surrouding_temporal_location_samples(crime.get_timestamp())
+
+    print("avant : ", result[0])
+    print("apres : ", result[1])
+
+    # Test composite
+    locationsamples2 = ListLocationProvider([crime])
+
+    clp = CompositeLocationProvider(locationsamples, locationsamples2)
+    print(clp)
+
+    # Test du add sur LocationProvider, doir renvoyer un composite
+    locationsamples3 = locationsamples + clp
+    print(locationsamples3)
+
+    #print(locationsamples + locationsamples)
 
     # Avenue de la Gare 46, 1003 Lausanne, Suisse
     # Location [latitude: 48.85479, longitude: 2.34756]
