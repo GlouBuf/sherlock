@@ -8,8 +8,6 @@ from configuration import *
 
 # TODO: Définir la classe Suspect qui décrit des informations contenues dans un fichier (nom, LocationProvider)
 class Suspect:
-    #attribut de classe
-    list_suspects = []
     # TODO: Implémenter le constructeur et les getters
     def __init__(self, name : str, sources):
         self.__name = name
@@ -24,36 +22,63 @@ class Suspect:
 
     # TODO: Définir la méthode str pour afficher un Suspect de la manière suivante :
     # [Suspect] Name: jdoe, Location provider: PictureLocationProvider (source: ’ ../ data/pics /jdoe’ (JPG,JPEG,jpg,jpeg), 2 location samples)
+    def __str__(self):
+        return "[Suspect] Name : " + str(self.__name) + ",Location provider (source : " + str(self.__sources) + ")"
 
     # TODO: Implémenter une méthode create_suspects_from_XML_file qui prend un nom de fichier XML en paramètre et le parse pour créer une liste de suspects
     # TODO: (Alternative) implémenter une méthode similaire pour les fichiers JSON
-    @classmethod
+    ''''@classmethod
     def create_suspects_from_XML_file(cls, filename):
+
+        list_suspects = []
         # Lire un fichier xml et ajouter les suspects à la liste...
-        return cls.list_suspects
+        tree1 = xml_et.parse(filename)
+        root = tree1.getroot()
+        suspect = root.findall('suspect/name')
+        for personne in suspect :
+            list_suspects.append(personne.text)
+            #for
+        return list_suspects'''
+
+
 
     @classmethod
     def create_suspects_from_JSON_file(cls, filename):
+        list_suspects = []
         # Lire un fichier json et ajouter les suspects à la liste...
-        return cls.list_suspects
-        pass
+        with open(filename, 'r') as f:
+            p = json.load(f)
+
+        for s in p["suspects"]:
+            name = s["name"]
+            lp = None
+            l = s["sources"]
+            for source in l :
+                l1 = ListLocationProvider()
+
+            #lp = reduce(lambda x, y :CompositeLocationProvider(x, y), l) #composite est uen classe
+
+            print(lp)
+
+            list_suspects.append(Suspect(name, lp))
+
+        return list_suspects
 
 
 if __name__ == '__main__':
-    pass
     # Tester l'implémentation de cette classe avec les instructions de ce bloc main (le résultat attendu est affiché ci-dessous)
     # Configuration.get_instance().add_element("verbose", True)
     #TwitterLocationProvider.set_api_key('Z4bLkruoqSp0JXJfJGTaMQEZo')
     #TwitterLocationProvider.set_api_key_secret('gYyLCa7QiDje76VaTttlylDjGThCBGcp9MIcEGlzVq6FJcXIdc')
 
-    #john = Suspect('jdoe', PictureLocationProvider('../data/pics/jdoe'))
-    #print(john)
+    john = Suspect('Patrick Biales', PictureLocationProvider('../data/pics/biales'))
+    print(john)
+    #
+    # suspects = Suspect.create_suspects_from_XML_file('../data/suspects.xml')
+    # print('\n'.join(map(str, suspects)))
 
-    #suspects = Suspect.create_suspects_from_XML_file('../data/suspects.xml')
-    #print('\n'.join(map(str, suspects)))
-
-    #suspects = Suspect.create_suspects_from_JSON_file('../data/suspects.json')
-    #print('\n'.join(map(str, suspects)))
+    suspects = Suspect.create_suspects_from_JSON_file('../data/suspects.json')
+    print('\n'.join(map(str, suspects)))
 
     # [Suspect] Name: jdoe, Location provider: PictureLocationProvider (source: '../data/pics/jdoe' (JPG,JPEG,jpg,jpeg), 2 location samples)
     # [Suspect] Name: jdoe, Location provider: CompositeLocationProvider (12 location samples)

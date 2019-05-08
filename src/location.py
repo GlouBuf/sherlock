@@ -318,7 +318,7 @@ class CompositeLocationProvider(LocationProvider):
         # Pour avoir un affichage comme dans l'énoncé, il faudra que les sous classe de LocationProvider
         # redéfinissent __str__
         return "CompositeLocationProvider (" + str(len(self.get_location_samples())) + " location samples)" + \
-               "\n" +  self.indent(str(self.__lp1)) + "\n" + self.indent(str(self.__lp2))
+               "\n" + indent(str(self.__lp1)) + "\n" + indent(str(self.__lp2))
 
 
 
