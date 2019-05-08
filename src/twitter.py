@@ -11,15 +11,16 @@ from datetime import datetime, timezone, timedelta
 class TwitterLocationProvider(ListLocationProvider):
     # TODO: Implémenter le constructeur où l'on construit une liste de LocationSample
     def __init__(self, key, key_secret):
-        self.__key = key
-        self.__key_secret = key_secret
+        self.set_api_key(key)
+        self.set_api_key_secret(key_secret)
+        #aller chercher les tweet et appeler extract location sample from tweet
 
     # TODO: Définir des attributs pour les clefs de l'API ainsi que les setters correspondants
-    def set_api_key(self, ):
+    def set_api_key(self, key):
+        self.__api_key = key
 
-
-    def set_api_key_secret():
-        pass
+    def set_api_key_secret(self, key_secret):
+        self.__api_key_secret = key_secret
 
 
     # TODO: Redéfinir la méthode str
