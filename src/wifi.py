@@ -10,6 +10,10 @@ import copy
 # TODO: Définir la classe WifiLogsLocationProvider
 class WifiLogsLocationProvider(ListLocationProvider):
     # TODO: Implémenter le constructeur
+    def __init__(self, username : str, db):
+        self.__username = username
+        self.__db = db
+        #à compléter
 
     # TODO: Redéfinir la méthode str
 

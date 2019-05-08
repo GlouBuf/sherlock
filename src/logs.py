@@ -11,7 +11,8 @@ from datetime import datetime, timezone, timedelta
 class LogsLocationProvider(ListLocationProvider):
     # TODO: Implémenter le constructeur où l'on définit en attribut le nom du fichier de log
     #  et où l'on construit la liste de samples
-    def __init__(self):
+    def __init__(self, filename):
+        self.__filename = filename
         # L'attribut contenant le nom du fichier est privé et l'attribut __samples est hérité de ListLocationProvider
 
         # TODO: parcourir les logs et filtrer ceux qui contiennent des appels GPS valides (coordonnées + temps).
