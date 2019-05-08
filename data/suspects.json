@@ -1,0 +1,104 @@
+{
+  "suspects": [
+    {
+      "name": "Patrick Biales",
+      "sources": [
+        {
+          "type": "Twitter",
+          "username": "PatrickBiales94",
+          "token": "915546853613211653-4sqbB0Ur7rVda76dMd9jUF2zU2WlsS9",
+          "token-secret": "yLZ3fy2RIHILcAai8vLnHe0lENJUBa6AYNrDGLPfVCvo7"
+        },
+        {
+          "type": "Photographs",
+          "dir": "../data/pics/biales"
+        },
+        {
+          "type": "Wi-Fi",
+          "db": "../data/db/wifi.db",
+          "username": "pbiales"
+        },
+        {
+          "type": "Logs",
+          "file": "../data/logs/patrick_biales.log"
+        }
+      ]
+    },
+    {
+      "name": "Emile Gravier",
+      "sources": [
+        {
+          "type": "Twitter",
+          "username": "egravier1994",
+          "token": "996422909735391233-kLWsObS61ghUmpgS2ZXTZElQ2n5Tt9Z",
+          "token-secret": "BXqtUZI2pBUOgDyOVY21svUHyP8iabA98kdT4GpZlWWNC"
+        },
+        {
+          "type": "Photographs",
+          "dir": "../data/pics/gravier"
+        },
+        {
+          "type": "Photographs",
+          "dir": "../data/pics/emileG"
+        },
+        {
+          "type": "Wi-Fi",
+          "db": "../data/db/wifi.db",
+          "username": "egravier"
+        }
+      ]
+    },
+    {
+      "name": "Jeremy Simon",
+      "sources": [
+        {
+          "type": "Twitter",
+          "username": "jeremysim1994",
+          "token": "912665047662546944-4WcHektmvFB8JdHyxEwnJPkW8WBnP7F",
+          "token-secret": "43a8fzn2N3HJ5FsL81MfBYePfP8lGg8LjfDR1XtC6WkCR"
+        },
+        {
+          "type": "Photographs",
+          "dir": "../data/pics/simon"
+        },
+        {
+          "type": "Wi-Fi",
+          "db": "../data/db/wifi.db",
+          "username": "jsimon"
+        }
+      ]
+    },
+    {
+      "name": "Odile Deray",
+      "sources": [
+        {
+          "type": "Photographs",
+          "dir": "../data/pics/deray"
+        },
+        {
+          "type": "Wi-Fi",
+          "db": "../data/db/wifi.db",
+          "username": "oderay"
+        }
+      ]
+    },
+    {
+      "name": "Jean-Paul Martoni",
+      "sources": [
+        {
+          "type": "Twitter",
+          "username": "jpmartoni1022",
+          "token": "996646823292035072-KjBHmxYbdUGQGdUfnmMld2HGnzDg6gF",
+          "token-secret": "Ij6viVHI385Gh5R59ROliZ46lqAsAeApdz4h1W8s5EJvM"
+        },
+        {
+          "type": "Photographs",
+          "dir": "../data/pics/martoni"
+        }
+      ]
+    },
+    {
+      "name": "Serge Karamazov"
+    }
+  ]
+}
