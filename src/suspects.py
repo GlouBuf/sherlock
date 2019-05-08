@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 from location import *
-from pictures import *
 import xml.etree.ElementTree as xml_et
 import os
 import json
 from configuration import *
+from twitter import *
+from wifi import *
+from pictures import *
+from logs import *
+
+
 
 # TODO: Définir la classe Suspect qui décrit des informations contenues dans un fichier (nom, LocationProvider)
 class Suspect:
@@ -54,7 +59,16 @@ class Suspect:
             lp = None
             l = s["sources"]
             for source in l :
-                l1 = ListLocationProvider()
+                if source.type == "Twitter" :
+                    l1 = TwitterLocationProvider()
+                    l1.set_api_key(source.token)
+                    l1.set_api_key_secret(source["token-secret"])
+                elif source.type == "Photographs" :
+                    l1 = PictureLocationProvider(source.dir)
+                elif source.type == "Wi-Fi" :
+                    l1 = WifiLogsLocationProvider()
+                elif l.type == "Logs" :
+                    l1 = LogsLocationProvider()
 
             #lp = reduce(lambda x, y :CompositeLocationProvider(x, y), l) #composite est uen classe
 
