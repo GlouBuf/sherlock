@@ -18,11 +18,16 @@ class LogsLocationProvider(ListLocationProvider):
         # TODO: parcourir les logs et filtrer ceux qui contiennent des appels GPS valides (coordonnées + temps).
         #  Générer un sample pour chaque log valide et l'ajouter à une liste temporaire.
         #  Appeler ensuite super en passant cette liste temporaire pour définir l'attribut __samples
-        pass
+        self.__samples = []  # pour que ça marche en attendant...
+
+        # Appel du constructeur de la classe mere
+        super().__init__(self.__samples)
 
 
     # TODO: Implémenter la méthode __str__ pour afficher les objets de la forme suivante
     # LogsLocationProvider (source: ../data/logs/jdoe.log, 2 location samples)
+    def __str__(self):
+        return "LogsLocationProvider (source: " + self.__filename + ", " + str(len(self.get_location_samples())) + " location samples)"
 
     # TODO: Implémenter la méthode _extract_location_sample_from_picture
     @staticmethod

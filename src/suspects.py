@@ -56,23 +56,32 @@ class Suspect:
 
         for s in p["suspects"]:
             name = s["name"]
+            print()
+            print("### create_suspects_from_JSON_file on traite le suspect : " + name + " ###")
+            print()
             list_lp = []
-            l = s["sources"]
-            el = None
-            for source in l :
-                if source["type"] == "Twitter" :
-                    el = TwitterLocationProvider(source["token"], source["token-secret"])
-                elif source["type"] == "Photographs" :
-                    el = PictureLocationProvider(source["dir"])
-                elif source["type"] == "Wi-Fi" :
-                    el = WifiLogsLocationProvider(source["username"], source["db"])
-                elif source["type"] == "Logs" :
-                    el = LogsLocationProvider(source["file"])
-                list_lp.append(el)
+            try:
+                l = s["sources"]
+                el = None
+                for source in l :
+                    if source["type"] == "Twitter" :
+                        el = TwitterLocationProvider(source["token"], source["token-secret"])
+                    elif source["type"] == "Photographs" :
+                        el = PictureLocationProvider(source["dir"])
+                    elif source["type"] == "Wi-Fi" :
+                        el = WifiLogsLocationProvider(source["username"], source["db"])
+                    elif source["type"] == "Logs" :
+                        el = LogsLocationProvider(source["file"])
+                    list_lp.append(el)
 
-            clp = reduce(lambda x, y :CompositeLocationProvider(x, y), list_lp) #composite est une classe
+                clp = reduce(lambda x, y :CompositeLocationProvider(x, y), list_lp) #composite est une classe
 
-            list_suspects.append(Suspect(name, clp))
+                list_suspects.append(Suspect(name, clp))
+            except KeyError:
+                print("Le suspect " + name + " n'a pas de sources de LocationProvider associé dans le fichier JSON")
+                print()
+                list_suspects.append(Suspect(name, []))
+
 
         return list_suspects
 
@@ -90,7 +99,11 @@ if __name__ == '__main__':
     # print('\n'.join(map(str, suspects)))
 
     suspects = Suspect.create_suspects_from_JSON_file('../data/suspects.json')
+    print("-------------------------------------------------------------")
+    print("### Affichage des suspects et de leurs location providers ###")
+    print("-------------------------------------------------------------")
     print('\n'.join(map(str, suspects)))
+
 
     # [Suspect] Name: jdoe, Location provider: PictureLocationProvider (source: '../data/pics/jdoe' (JPG,JPEG,jpg,jpeg), 2 location samples)
     # [Suspect] Name: jdoe, Location provider: CompositeLocationProvider (12 location samples)

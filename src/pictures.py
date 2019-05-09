@@ -25,9 +25,16 @@ class PictureLocationProvider(ListLocationProvider):
                 if fichier.name.endswith(suffix):
                     source_pic_file = str(fichier)
                     elements_de_ls = PictureLocationProvider._extract_location_sample_from_picture(os.path.join(self.__dir, fichier.name)) #on obtient un datetime, une latitude et une longitude
-                    location_de_ls = Location(elements_de_ls[1], elements_de_ls[2])
-                    ls = LocationSample(elements_de_ls[0], location_de_ls) #on crée un LocationSample
-                    __samples.append([source_pic_file, ls])
+
+                    # Si le premier élément est égal à None, alors on n'ajoute pas de LocationSample car on n'a
+                    # pas pu extraire de date ET de localisation
+                    if (elements_de_ls[0] != None):
+                        location_de_ls = Location(elements_de_ls[1], elements_de_ls[2])
+                        ls = LocationSample(elements_de_ls[0], location_de_ls) #on crée un LocationSample
+                        __samples.append([source_pic_file, ls])
+                    else:
+                        print("PAS DE DONNEES EXIF DANS L'image " + fichier.name)
+
         super().__init__(__samples)
 
 
@@ -37,7 +44,8 @@ class PictureLocationProvider(ListLocationProvider):
 
     # TODO: Redéfinir la méthode str pour afficher les objets sous la forme suivante :
     # PictureLocationProvider (source: ’ ../ data/pics /jdoe’ (JPG,JPEG,jpg,jpeg), 2 location samples)
-
+    def __str__(self):
+        return "PictureLocationProvider (source: " + self.__dir + " (JPG,JPEG,jpg,jpeg)," + str(len(self.get_location_samples()))  + " location samples)"
 
     # TODO: Compléter la méthode _extract_location_sample_from_picture
     @staticmethod
@@ -48,6 +56,7 @@ class PictureLocationProvider(ListLocationProvider):
         (t, lat, lng) = (None, None, None)
 
         with open(filename, 'rb') as f:
+            print("Picture LocationProvider, on lit l'image : " + filename)
             exif_data = exifread.process_file(f)
 
             gps_latitude = utils.get_if_exists(exif_data, 'GPS GPSLatitude')
@@ -67,12 +76,49 @@ class PictureLocationProvider(ListLocationProvider):
             date = utils.get_if_exists(exif_data, 'GPS GPSDate')
             ldate = str(date).split(':')
             timestamp = utils.get_if_exists(exif_data, 'GPS GPSTimeStamp')
-            ltimestamp = datetime.strptime(str(timestamp), "[%H, %M, %S]")
-            d = ltimestamp - datetime(1900, 1, 1)
-            # TODO: Convertir la date (au format textuel) contenue dans le EXIF tag en datetime et le stocker dans la variable t
-            t = datetime(int(ldate[0]), int(ldate[1]), int(ldate[2])) + d
+            #print("date = " + str(date) + " timestamp = " + str(timestamp) + " lat = " + str(lat) + " long = " + str(lng))
+
+            # Si on n'a pas de localisation ou de date dans les données EXIF on ne peut créer de LocationSample
+            # On renvoie None, None, None
+            if((date == None) or (timestamp == None) or (lat == None) or (lng == None)):
+                return None, None, None
+            else:
+                try:
+                    ltimestamp = datetime.strptime(str(timestamp), "[%H, %M, %S]")
+                except ValueError as e:
+                    #print("bad timestamp value, let's check and fix them in case they are of type exifread.utils.Ratio")
+                    #print("that cannot be converted using datetime.strptime(...) ex [9, 9, 645/24]")
+                    print("Converted timestamp values from Ratio to int")
+                    timestamp = PictureLocationProvider.fix_timestamp_values(timestamp)
+
+                    ltimestamp = datetime.strptime(str(timestamp), "[%H, %M, %S]")
+
+                d = ltimestamp - datetime(1900, 1, 1)
+                # TODO: Convertir la date (au format textuel) contenue dans le EXIF tag en datetime et le stocker dans la variable t
+                t = datetime(int(ldate[0]), int(ldate[1]), int(ldate[2])) + d
 
         return t, lat, lng
+
+    @staticmethod
+    def fix_timestamp_values(timestamp):
+        index = 0
+        for val in timestamp.values:
+            if isinstance(val, exifread.utils.Ratio):
+                timestamp.values[index] = PictureLocationProvider.ratio_to_int(val);
+            index = index + 1
+        timestamp.printable = str(timestamp.values)
+        return timestamp
+
+    @staticmethod
+    def ratio_to_int(ratio):
+         # Takes exif tag value ratio as input and outputs float
+
+            if not isinstance(ratio, exifread.utils.Ratio):
+                raise ValueError("You passed something to ratio_to_float that isn't "
+                     "a GPS ratio.")
+
+            # GPS metadata is given as a number and a density
+            return int(ratio.num / ratio.den)
 
 
 if __name__ == '__main__':
