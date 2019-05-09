@@ -56,17 +56,18 @@ class Suspect:
 
         for s in p["suspects"]:
             name = s["name"]
-            list_lp = None
+            list_lp = []
             l = s["sources"]
+            el = None
             for source in l :
-                if source.type == "Twitter" :
-                    el = TwitterLocationProvider(el.set_api_key(source.token), el.set_api_key_secret(source["token-secret"]))
-                elif source.type == "Photographs" :
-                    el = PictureLocationProvider(source.dir)
-                elif source.type == "Wi-Fi" :
-                    el = WifiLogsLocationProvider(source.username, source.db)
-                elif l.type == "Logs" :
-                    el = LogsLocationProvider(source.file)
+                if source["type"] == "Twitter" :
+                    el = TwitterLocationProvider(source["token"], source["token-secret"])
+                elif source["type"] == "Photographs" :
+                    el = PictureLocationProvider(source["dir"])
+                elif source["type"] == "Wi-Fi" :
+                    el = WifiLogsLocationProvider(source["username"], source["db"])
+                elif source["type"] == "Logs" :
+                    el = LogsLocationProvider(source["file"])
                 list_lp.append(el)
 
             clp = reduce(lambda x, y :CompositeLocationProvider(x, y), list_lp) #composite est une classe
