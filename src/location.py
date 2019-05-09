@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
 import sys
-'''from PyQt5.QtCore import QUrl
+from PyQt5.QtCore import QUrl
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtWidgets import QApplication
 import folium
 import googlemaps
 import os
-from configuration import *'''
+from configuration import *
 import tempfile
 import pathlib
 from math import asin, sqrt, sin, cos, radians

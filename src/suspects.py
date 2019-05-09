@@ -104,6 +104,7 @@ if __name__ == '__main__':
     print("-------------------------------------------------------------")
     print('\n'.join(map(str, suspects)))
 
+    #john.get_sources()[0].show_location_samples()
 
     # [Suspect] Name: jdoe, Location provider: PictureLocationProvider (source: '../data/pics/jdoe' (JPG,JPEG,jpg,jpeg), 2 location samples)
     # [Suspect] Name: jdoe, Location provider: CompositeLocationProvider (12 location samples)
