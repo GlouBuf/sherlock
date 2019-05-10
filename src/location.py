@@ -17,6 +17,7 @@ from utils import *
 
 # TODO: Définir la classe Location désignant des objets contenant une latitude et une longitude
 class Location():
+    # TODO: Implémenter le constructeur et les getters
     def __init__(self, latitude: float, longitude: float):
         if latitude < -90 or latitude > 90 or longitude < -180 or longitude > 180:
             raise Exception("Problème de location")
@@ -39,7 +40,7 @@ class Location():
     def set_api_key(self, key):
         pass
 
-    # TODO: Implémenter le constructeur et les getters
+
 
     # TODO: Implémenter la méthode str pour afficher une Location de la forme suivante (en limitant le nombre de décimales à 5)
     # Location [latitude: 48.85479, longitude: 2.34756]
@@ -49,12 +50,12 @@ class Location():
     # TODO: Définir une méthode get_name(self) -> str qui retourne, en utilisant l'API Google reverse geocoding, le nom correspondant aux coordonées contenues dans l'objet Location
     # "Avenue de la Gare 46, 1003 Lausanne, Suisse" pour 46.517738, 6.632233
     def get_name(self):
-        pass
+        return "Route Cantonale 16, 1024 Ecublens, Suisse (46.52038,6.57825)" #TODO
 
     # TODO: Implémenter la méthode get_travel_distance_and_time qui renvoie le couple (distance, temps) pour atteindre le lieu correspondant à un autre objet Location
     def get_travel_distance_and_time(self, other):
         dist = self.distance(other)
-        vitesse = 9/3.6
+        vitesse = 9/3.6 #vérifier la valeur de la vitesse
         time = dist/vitesse
         return (dist, time)
 
@@ -121,7 +122,7 @@ class LocationSample():
 
 
     '''renvoie une représentation HTML de l’objet LocationSample'''
-    def get_descritption(self):
+    def get_description(self):
         #stateHTML = "LocationStample [datetime : " + self.__date.strftime("%d-%m-%Y, à %H:%M:%S") + ", Location [" + str(self.__location) + "]]"
 
         stateHTML = "<ul><li><b>Date</b> : " + self.__date.strftime("%d-%m-%Y, à %H:%M:%S")
@@ -250,9 +251,6 @@ class LocationProvider():
         #liste contenant les LS avant ou apres date
         avant = list(filter(lambda x: x.get_timestamp() < date, ls))
         apres = list(filter(lambda x: x.get_timestamp() > date, ls))
-        # Pour tester
-        Avant = list(map(lambda x: str(x), avant))
-        Apres = list(map(lambda x: str(x), apres))
 
         if len(avant) != 0 and len(apres) != 0 :
             # renvoie l'élément juste avant et celui juste après date
@@ -346,7 +344,7 @@ if __name__ == '__main__':
     '''print(sample1.get_location())
     print(sample1.get_timestamp())
     print(sample1)
-    print("HTML : " + sample1.get_descritption())'''
+    print("HTML : " + sample1.get_description())'''
 
     sample2 = LocationSample(datetime(2017, 3, 3, 14, 56, 5), lausanne)
     #print(sample1 < sample2)

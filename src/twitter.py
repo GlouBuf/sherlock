@@ -13,8 +13,9 @@ class TwitterLocationProvider(ListLocationProvider):
     def __init__(self, key, key_secret):
         self.set_api_key(key)
         self.set_api_key_secret(key_secret)
-        #aller chercher les tweet et appeler extract location sample from tweet
-        self.__samples = [] # pour que ça marche en attendant...
+        #todo : aller chercher les tweet et appeler extract location sample from tweet FAIRE COMME DANS PICTURES
+        self.__samples = self._extract_location_sample_from_tweet()
+
 
         # Appel du constructeur de la classe mere
         super().__init__(self.__samples)
@@ -33,8 +34,8 @@ class TwitterLocationProvider(ListLocationProvider):
 
     # TODO: Implémenter la méthode _extract_location_sample_from_tweet qui prend en paramètre un tweet et renvoie un tuple (temps, latitude, longitude)
     # Comme pour la méthode de Picture, vérifier que les paramètres sont bien présents dans le tweet
-    def _extract_location_sample_from_tweet():
-        pass
+    def _extract_location_sample_from_tweet(self):
+        return []
 
 
 if __name__ == '__main__':

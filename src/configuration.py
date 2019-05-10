@@ -18,7 +18,7 @@ class Configuration:
 
     def get_element(self, key, default = None):
         if key in self.__store.keys() :
-            return "la valeur de retour est : " + str(self.__store[key])
+            return self.__store[key]
         else :
             return default
 

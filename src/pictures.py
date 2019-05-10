@@ -24,16 +24,14 @@ class PictureLocationProvider(ListLocationProvider):
             for suffix in liste_suffix:
                 if fichier.name.endswith(suffix):
                     source_pic_file = str(fichier)
-                    elements_de_ls = PictureLocationProvider._extract_location_sample_from_picture(os.path.join(self.__dir, fichier.name)) #on obtient un datetime, une latitude et une longitude
-
-                    # Si le premier élément est égal à None, alors on n'ajoute pas de LocationSample car on n'a
-                    # pas pu extraire de date ET de localisation
-                    if (elements_de_ls[0] != None):
+                    try :
+                        elements_de_ls = PictureLocationProvider._extract_location_sample_from_picture(os.path.join(self.__dir, fichier.name)) #on obtient un datetime, une latitude et une longitude
                         location_de_ls = Location(elements_de_ls[1], elements_de_ls[2])
-                        ls = LocationSample(elements_de_ls[0], location_de_ls) #on crée un LocationSample
-                        __samples.append([source_pic_file, ls])
-                    else:
-                        print("PAS DE DONNEES EXIF DANS L'image " + fichier.name)
+                        ls = LocationSample(elements_de_ls[0], location_de_ls)  # on crée un LocationSample
+                        __samples.append(ls)
+                    except ValueError :
+                        print("PAS DE DONNEES EXIF DANS L'image " + fichier.name + " fichier ignoré : on passe au fichier suivant.")
+
 
         super().__init__(__samples)
 
@@ -81,7 +79,8 @@ class PictureLocationProvider(ListLocationProvider):
             # Si on n'a pas de localisation ou de date dans les données EXIF on ne peut créer de LocationSample
             # On renvoie None, None, None
             if((date == None) or (timestamp == None) or (lat == None) or (lng == None)):
-                return None, None, None
+                raise ValueError
+                return
             else:
                 try:
                     ltimestamp = datetime.strptime(str(timestamp), "[%H, %M, %S]")
