@@ -69,7 +69,7 @@ class Suspect:
                     elif source["type"] == "Photographs" :
                         el = PictureLocationProvider(source["dir"])
                     elif source["type"] == "Wi-Fi" :
-                        el = WifiLogsLocationProvider(source["username"], source["db"])
+                        el = WifiLogsLocationProvider(source["db"], source["username"])
                     elif source["type"] == "Logs" :
                         el = LogsLocationProvider(source["file"])
                     list_lp.append(el)
