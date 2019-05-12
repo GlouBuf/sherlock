@@ -14,7 +14,6 @@ class LogsLocationProvider(ListLocationProvider):
     def __init__(self, filename):
         self.__filename = filename
         # L'attribut contenant le nom du fichier est privé et l'attribut __samples est hérité de ListLocationProvider
-        #test
 
         # TODO: parcourir les logs et filtrer ceux qui contiennent des appels GPS valides (coordonnées + temps).
         #  Générer un sample pour chaque log valide et l'ajouter à une liste temporaire.
