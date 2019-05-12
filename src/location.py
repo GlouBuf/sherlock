@@ -170,6 +170,9 @@ class LocationProvider():
         if len(samples) == 0:
             return
 
+        for s in samples:
+            print(s.get_location())
+
         coordinates = [(sample.get_location().get_latitude(), sample.get_location().get_longitude()) for sample in
                        samples]
         timestamps = [sample.get_timestamp() for sample in samples]
