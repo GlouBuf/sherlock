@@ -13,12 +13,17 @@ class LogsLocationProvider(ListLocationProvider):
     #  et où l'on construit la liste de samples
     def __init__(self, filename):
         self.__filename = filename
+        self.__samples = []
         # L'attribut contenant le nom du fichier est privé et l'attribut __samples est hérité de ListLocationProvider
-
         # TODO: parcourir les logs et filtrer ceux qui contiennent des appels GPS valides (coordonnées + temps).
         #  Générer un sample pour chaque log valide et l'ajouter à une liste temporaire.
         #  Appeler ensuite super en passant cette liste temporaire pour définir l'attribut __samples
-        self.__samples = []  # pour que ça marche en attendant...
+        with open(self.__filename, "r") as f:
+            for line in f.readlines():
+                print(line)
+                r = re.match("^\[(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3})\].*(.*), (.*)(.∗), (.∗), source: GPS$", line)
+                # Traiter la ligne et ainsi de suite ...
+                print(r)
 
         # Appel du constructeur de la classe mere
         super().__init__(self.__samples)
@@ -44,7 +49,7 @@ class LogsLocationProvider(ListLocationProvider):
 if __name__ == '__main__':
     pass
     # Tester l'implémentation de cette classe avec les instructions de ce bloc main (le résultat attendu est affiché ci-dessous)
-    # lp = LogsLocationProvider('../data/logs/michael/michael.log')
+    lp = LogsLocationProvider('../data/logs/patrick_biales.log')
     # print(lp)
     # lp.show_location_samples()
     # lp.print_location_samples()
