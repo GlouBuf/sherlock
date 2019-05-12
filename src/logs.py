@@ -20,10 +20,11 @@ class LogsLocationProvider(ListLocationProvider):
         #  Appeler ensuite super en passant cette liste temporaire pour définir l'attribut __samples
         with open(self.__filename, "r") as f:
             for line in f.readlines():
-                print(line)
-                r = re.match("^\[(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3})\].*(.*), (.*)(.∗), (.∗), source: GPS$", line)
-                # Traiter la ligne et ainsi de suite ...
-                print(r)
+                tuple = LogsLocationProvider._extract_location_sample_from_log(line)
+                if tuple != None :
+                    ls = LocationSample(tuple[0], Location(tuple[1], tuple[2]))
+                    #print(r.groups())
+                    self.__samples.append(ls)
 
         # Appel du constructeur de la classe mere
         super().__init__(self.__samples)
@@ -37,22 +38,30 @@ class LogsLocationProvider(ListLocationProvider):
     # TODO: Implémenter la méthode _extract_location_sample_from_picture
     @staticmethod
     def _extract_location_sample_from_log(log: str):
-        pass
         """
         Returns the time, latitude, and longitude, if available, from a given log
         """
         # TODO: filtrer le log et extraire les données temporelles, créer un datetime
         # TODO: filtrer le log et extraire les données GPS
         # TODO: retourner un triplet contenant le datetime, la latitude et la longitude
+        r = re.match("^\[(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}\.\d{3})\].*\((.*), (.*)\), source: GPS$", log)
+        if r != None:
+            dt = datetime(int(r.groups()[0]), int(r.groups()[1]), int(r.groups()[2]), int(r.groups()[3]), int(r.groups()[4]), round(float(r.groups()[5])))
+            lat = float(r.groups()[6])
+            long = float(r.groups()[7])
+            return dt, lat, long
+        else :
+            return None
+
 
 
 if __name__ == '__main__':
     pass
     # Tester l'implémentation de cette classe avec les instructions de ce bloc main (le résultat attendu est affiché ci-dessous)
     lp = LogsLocationProvider('../data/logs/patrick_biales.log')
-    # print(lp)
-    # lp.show_location_samples()
-    # lp.print_location_samples()
+    print(lp)
+    lp.show_location_samples()
+    lp.print_location_samples()
 
     # LogsLocationProvider (source: ../data/logs/michael/michael.log, 3 location samples)
     # LocationSample [datetime: 2019-03-21 13:07:40, location: Location [latitude: 46.52145, longitude: 6.58138]]
