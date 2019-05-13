@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d2f65a22-edba-45e5-bcd8-cad0485c4d1c" name="Default Changelist" comment="">
+    <list default="true" id="d2f65a22-edba-45e5-bcd8-cad0485c4d1c" name="Default Changelist" comment="Added logs readings">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/location.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/location.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wifi.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/wifi.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,7 +16,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/suspects.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
+            <state relative-caret-position="945">
               <caret line="71" column="68" selection-start-line="71" selection-start-column="68" selection-end-line="71" selection-end-column="68" />
               <folding>
                 <element signature="e#24#46#0" expanded="true" />
@@ -28,7 +28,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sherlock.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
+            <state relative-caret-position="735">
               <caret line="52" column="26" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
               <folding>
                 <element signature="e#24#39#0" expanded="true" />
@@ -40,7 +40,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/codecs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
+            <state relative-caret-position="4650">
               <caret line="311" selection-start-line="311" selection-end-line="311" />
             </state>
           </provider>
@@ -49,8 +49,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/location.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="265" selection-start-line="265" selection-end-line="265" />
+            <state relative-caret-position="-1034">
+              <caret line="168" column="45" selection-start-line="168" selection-start-column="23" selection-end-line="168" selection-end-column="45" />
               <folding>
                 <element signature="e#24#64#0" expanded="true" />
               </folding>
@@ -61,26 +61,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/twitter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="32" column="45" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
+            <state relative-caret-position="165">
+              <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+              <folding>
+                <element signature="e#24#46#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/configuration.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/wifi.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="72" column="13" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="13" />
+            <state relative-caret-position="566">
+              <caret line="102" column="36" lean-forward="true" selection-start-line="102" selection-start-column="36" selection-end-line="102" selection-end-column="36" />
               <folding>
                 <element signature="e#24#46#0" expanded="true" />
               </folding>
@@ -91,17 +85,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
+            <state relative-caret-position="210">
               <caret line="16" column="10" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="10" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/logs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+            <state relative-caret-position="240">
+              <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
+              <folding>
+                <element signature="e#24#46#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/logs/patrick_biales.log">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3255">
+              <caret line="217" column="35" selection-start-line="217" selection-start-column="35" selection-end-line="217" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -109,8 +115,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pictures.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="30" column="44" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="44" />
+            <state relative-caret-position="465">
+              <caret line="40" column="25" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
               <folding>
                 <element signature="e#24#46#0" expanded="true" />
               </folding>
@@ -125,6 +131,7 @@
       <find>try</find>
       <find>Serge</find>
       <find>could_have_been_there</find>
+      <find>GPS</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -136,18 +143,18 @@
         <option value="397a4fc0-4de9-447b-be48-025967d89d7f/consoles/books.db 1" />
         <option value="$PROJECT_DIR$/data/suspects.json" />
         <option value="$PROJECT_DIR$/src/twitter.py" />
-        <option value="$PROJECT_DIR$/src/logs.py" />
         <option value="$PROJECT_DIR$/src/pictures.py" />
         <option value="$PROJECT_DIR$/src/location.py" />
         <option value="$PROJECT_DIR$/src/suspects.py" />
+        <option value="$PROJECT_DIR$/src/logs.py" />
         <option value="$PROJECT_DIR$/src/wifi.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="284" />
-    <option name="y" value="-1395" />
-    <option name="width" value="1367" />
+    <option name="x" value="1318" />
+    <option name="y" value="229" />
+    <option name="width" value="2119" />
     <option name="height" value="985" />
   </component>
   <component name="ProjectView">
@@ -167,6 +174,12 @@
               <item name="sherlock" type="b2602c69:ProjectViewProjectNode" />
               <item name="sherlock" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sherlock" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sherlock" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="logs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sherlock" type="b2602c69:ProjectViewProjectNode" />
@@ -195,7 +208,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -210,7 +223,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.wifi">
-    <configuration name="location" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="logs" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="sherlock" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -222,7 +235,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/location.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/logs.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -273,7 +286,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="suspects" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="twitter" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="sherlock" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -285,7 +298,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/suspects.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/twitter.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -316,19 +329,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.location" />
       <item itemvalue="Python.pictures" />
       <item itemvalue="Python.sherlock" />
-      <item itemvalue="Python.suspects" />
       <item itemvalue="Python.wifi" />
+      <item itemvalue="Python.twitter" />
+      <item itemvalue="Python.logs" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.wifi" />
-        <item itemvalue="Python.sherlock" />
-        <item itemvalue="Python.suspects" />
+        <item itemvalue="Python.logs" />
         <item itemvalue="Python.pictures" />
-        <item itemvalue="Python.location" />
+        <item itemvalue="Python.twitter" />
+        <item itemvalue="Python.sherlock" />
       </list>
     </recent_temporary>
   </component>
@@ -371,10 +384,17 @@
       <option name="project" value="LOCAL" />
       <updated>1557438688227</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added logs">
+      <created>1557678148353</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1557678148353</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
-  <component name="TodoView" selected-index="4">
+  <component name="TodoView" selected-index="5">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
     </todo-panel>
@@ -384,20 +404,21 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="284" y="-1395" width="1367" height="985" extended-state="0" />
+    <frame x="1318" y="229" width="2119" height="985" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25577927" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1638796" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="DB Browser" order="3" weight="0.32950422" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3289941" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3289941" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3289941" />
-      <window_info anchor="bottom" id="Version Control" order="7" visible="true" weight="0.33846155" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.33846155" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3289941" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
@@ -472,7 +493,9 @@
     <MESSAGE value="test" />
     <MESSAGE value="Merge branch 'master' of https://github.com/GlouBuf/sherlock&#10;&#10;# Please enter a commit message to explain why this merge is necessary,&#10;# especially if it merges an updated upstream into a topic branch.&#10;#&#10;# Lines starting with '#' will be ignored, and an empty message aborts&#10;# the commit." />
     <MESSAGE value="Correction dans pictures.py des cas où les timestamp.values étaient des&#10;Ratios (ex [9, 9, 625/24], et correction du cas où il n'y a pas&#10;dans les images de localisation ou de date. Prise en compte dans suspect.py&#10;du cas de Karamazov qui n'a pas de source" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correction dans pictures.py des cas où les timestamp.values étaient des&#10;Ratios (ex [9, 9, 625/24], et correction du cas où il n'y a pas&#10;dans les images de localisation ou de date. Prise en compte dans suspect.py&#10;du cas de Karamazov qui n'a pas de source" />
+    <MESSAGE value="Added logs" />
+    <MESSAGE value="Added logs readings" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added logs readings" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -574,34 +597,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="311" selection-start-line="311" selection-end-line="311" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/suspects.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
+        <state relative-caret-position="945">
           <caret line="71" column="68" selection-start-line="71" selection-start-column="68" selection-end-line="71" selection-end-column="68" />
-          <folding>
-            <element signature="e#24#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="16" column="10" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pictures.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="30" column="44" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="44" />
           <folding>
             <element signature="e#24#46#0" expanded="true" />
           </folding>
@@ -610,7 +609,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sherlock.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
+        <state relative-caret-position="735">
           <caret line="52" column="26" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
           <folding>
             <element signature="e#24#39#0" expanded="true" />
@@ -618,17 +617,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4650">
+          <caret line="311" selection-start-line="311" selection-end-line="311" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="16" column="10" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/logs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
+          <folding>
+            <element signature="e#24#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/logs/patrick_biales.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3255">
+          <caret line="217" column="35" selection-start-line="217" selection-start-column="35" selection-end-line="217" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pictures.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="40" column="25" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
+          <folding>
+            <element signature="e#24#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/twitter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="32" column="45" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
+        <state relative-caret-position="165">
+          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+          <folding>
+            <element signature="e#24#46#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/location.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="265" selection-start-line="265" selection-end-line="265" />
+        <state relative-caret-position="-1034">
+          <caret line="168" column="45" selection-start-line="168" selection-start-column="23" selection-end-line="168" selection-end-column="45" />
           <folding>
             <element signature="e#24#64#0" expanded="true" />
           </folding>
@@ -637,18 +680,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/wifi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="72" column="13" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="13" />
+        <state relative-caret-position="566">
+          <caret line="102" column="36" lean-forward="true" selection-start-line="102" selection-start-column="36" selection-end-line="102" selection-end-column="36" />
           <folding>
             <element signature="e#24#46#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/logs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
         </state>
       </provider>
     </entry>
