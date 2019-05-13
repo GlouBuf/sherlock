@@ -25,7 +25,7 @@ class WifiLogsLocationProvider(ListLocationProvider):
         cursor = db_wifi.cursor()
 
 
-        for row in cursor.execute("SELECT name, timestamp, latitude, longitude from location_samples join users on location_samples.uid == users.id join hotspots on location_samples.hid == hotspots.id where users.name == '" + self.__username + "' order by location_samples.timestamp asc"):
+        for row in cursor.execute("SELECT name, timestamp, latitude, longitude from location_samples join users on location_samples.uid == users.id join hotspots on location_samples.hid == hotspots.id where users.name == ? order by location_samples.timestamp asc", (self.__username,)):
             tstamp = row['timestamp']
             date = datetime.fromtimestamp(tstamp)
             lat = row['latitude']
