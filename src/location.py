@@ -62,8 +62,10 @@ class Location():
 
     # TODO: Implémenter la méthode get_travel_distance_and_time qui renvoie le couple (distance, temps) pour atteindre le lieu correspondant à un autre objet Location
     def get_travel_distance_and_time(self, other):
-        arrivee = [str(self.__latitude, self.__longitude)]
-        depart = [str(other.__latitude, other.__logitude)]
+        latlong_arrivee = (self.__latitude, self.__longitude)
+        latlong_depart = (other.__latitude, other.__longitude)
+        arrivee = [str(latlong_arrivee)]
+        depart = [str(latlong_depart)]
 
         client = googlemaps.Client(key='AIzaSyBsgJp_3ElinD9-T5r2Fbcg0AABR7caito')
 
