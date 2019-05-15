@@ -17,16 +17,15 @@ from utils import *
 
 # TODO: Définir la classe Location désignant des objets contenant une latitude et une longitude
 class Location():
+
     # TODO: Implémenter le constructeur et les getters
-    def __init__(self, latitude: float, longitude: float, client, key):
+    def __init__(self, latitude: float, longitude: float):
         if latitude < -90 or latitude > 90 or longitude < -180 or longitude > 180:
             raise Exception("Problème de location")
         self.__latitude = latitude
         self.__longitude = longitude
-        self.__client = client
-        self.set_api_key(key)
-
-
+        #self.__client = client
+        #self.set_api_key(key)
 
     def get_latitude(self):
         return self.__latitude
@@ -40,11 +39,31 @@ class Location():
         return D
 
     # TODO: Créer des attributs *privés* permettant de stocker la clef (api_key) pour l'accès à l'API de Google et l'objet Client (module googlemaps) correspondant (api_client)
+
     # TODO: Créer la méthode correspondante : set_api_key (*optionnel* : et __check_api_init pour vérifier que les attributs ci-dessus ont bien été initialisés)
+       # VOIR DOCUMENTATION ICI : https://github.com/googlemaps/google-maps-services-python qu'on trouve en cherchant
+        # sur Google "python googlemaps example". Ensuite à la fois utiliser le debugger pour comprendre
+        # le format des résultats mais aussi aller voir la doc de Google sur Geocoding API (adresse dans la doc
+        # de la librairie python googlmemaps précédente. Doc Google ici : python googlemaps example
+        # https://developers.google.com/maps/documentation/geocoding/start
 
-    def set_api_key(self, key):
-        self.__api_key = key
+    @staticmethod
+    def set_api_key(key):
+        if not Location.__check_api_init():
+            print("INIT")
+            Location.__api_key = key
+            Location.__gmaps_client = googlemaps.Client(Location.__api_key)
+        else:
+            print("DEJA INIT")
 
+
+    @staticmethod
+    def __check_api_init():
+        try:
+            Location.__api_key
+            return True
+        except:
+            return False
 
     # TODO: Implémenter la méthode str pour afficher une Location de la forme suivante (en limitant le nombre de décimales à 5)
     # Location [latitude: 48.85479, longitude: 2.34756]
@@ -54,11 +73,21 @@ class Location():
     # TODO: Définir une méthode get_name(self) -> str qui retourne, en utilisant l'API Google reverse geocoding, le nom correspondant aux coordonées contenues dans l'objet Location
     # "Avenue de la Gare 46, 1003 Lausanne, Suisse" pour 46.517738, 6.632233
     def get_name(self):
-        googlemaps.configure(self.__api_key)
+        # VOIR DOCUMENTATION ICI : https://github.com/googlemaps/google-maps-services-python qu'on trouve en cherchant
+        # sur Google "python googlemaps example". Ensuite à la fois utiliser le debugger pour comprendre
+        # le format des résultats mais aussi aller voir la doc de Google sur Geocoding API (adresse dans la doc
+        # de la librairie python googlmemaps précédente. Doc Google ici : python googlemaps example
+        # https://developers.google.com/maps/documentation/geocoding/start
+
+        #googlemaps.configure(self.__api_key)
         lat = self.__latitude
         long = self.__longitude
-        destination = googlemaps.geocoding(38.887563, -77.019929)
-        return destination
+        destination = Location.__gmaps_client.reverse_geocode((lat, long))
+        adresse = destination[0]["formatted_address"] + "," + " pour " + str(lat) + ", " + str(long)
+        #print(adresse)
+        #destination = googlemaps.geocoding(38.887563, -77.019929)
+        return adresse
+
 
     # TODO: Implémenter la méthode get_travel_distance_and_time qui renvoie le couple (distance, temps) pour atteindre le lieu correspondant à un autre objet Location
     def get_travel_distance_and_time(self, other):
@@ -353,11 +382,14 @@ class ListLocationProvider(LocationProvider):
 if __name__ == '__main__':
     # Tester l'implémentation de cette classe avec les instructions de ce bloc main (le résultat attendu est affiché ci-dessous)
     # Configuration.get_instance().add_element("verbose", True)
-    # Location.set_api_key('AIzaSyBsgJp_3ElinD9-T5r2Fbcg0AABR7caito')
+    Location.set_api_key('AIzaSyBsgJp_3ElinD9-T5r2Fbcg0AABR7caito')
 
     paris = Location(48.854788, 2.347557)
+
+    print("--- TEST DE LA REVERSE GEOLOCALISATION methode get_name() de la classe Location ---")
     lausanne = Location(46.517738, 6.632233)
-    #print(lausanne.get_name())
+    print(lausanne.get_name())
+    print("-----")
 
     sample1 = LocationSample(datetime(2017, 3, 3, 12, 25), paris)
     '''print(sample1.get_location())
