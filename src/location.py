@@ -24,8 +24,6 @@ class Location():
             raise Exception("Problème de location")
         self.__latitude = latitude
         self.__longitude = longitude
-        #self.__client = client
-        #self.set_api_key(key)
 
     def get_latitude(self):
         return self.__latitude
@@ -84,8 +82,6 @@ class Location():
         long = self.__longitude
         destination = Location.__gmaps_client.reverse_geocode((lat, long))
         adresse = destination[0]["formatted_address"] + "," + " pour " + str(lat) + ", " + str(long)
-        #print(adresse)
-        #destination = googlemaps.geocoding(38.887563, -77.019929)
         return adresse
 
 
@@ -93,20 +89,17 @@ class Location():
     def get_travel_distance_and_time(self, other):
         latlong_arrivee = (self.__latitude, self.__longitude)
         latlong_depart = (other.__latitude, other.__longitude)
-        arrivee = [str(latlong_arrivee)]
-        depart = [str(latlong_depart)]
-
-        client = googlemaps.Client(key='AIzaSyBsgJp_3ElinD9-T5r2Fbcg0AABR7caito')
-
-        results = client.distance_matrix(origins=depart, destinations=arrivee, mode="walking")
-
-        distance = results['rows'][0]['elements'][0]['distance']['text']
-        temps = (results['rows'][0]['elements'][0]['duration']['text'])/2
-        return (distance, temps)
+        arrivee = [latlong_arrivee]
+        depart = [latlong_depart]
 
 
+        results = Location.__gmaps_client.distance_matrix(origins=depart, destinations=arrivee, mode="walking")
+        # print(results)
+        distance = results['rows'][0]['elements'][0]['distance']['value'] #en m
+        temps = results['rows'][0]['elements'][0]['duration']['value'] #en seconde
+        temps_reel = temps / 2
 
-
+        return (distance, temps_reel)
 
 
 # TODO: Définir la classe LocationSample désignant des objets contenant un datetime et un objet Location
@@ -392,6 +385,11 @@ if __name__ == '__main__':
     lausanne = Location(46.517738, 6.632233)
     print(lausanne.get_name())
     print("-----")
+
+    print("-----test get travel")
+    print(lausanne.get_travel_distance_and_time(paris))
+    print("-----")
+
 
     sample1 = LocationSample(datetime(2017, 3, 3, 12, 25), paris)
     '''print(sample1.get_location())
