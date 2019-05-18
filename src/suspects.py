@@ -65,7 +65,7 @@ class Suspect:
                 el = None
                 for source in l :
                     if source["type"] == "Twitter" :
-                        el = TwitterLocationProvider(source["token"], source["token-secret"])
+                        el = TwitterLocationProvider(name, source["token"], source["token-secret"])
                     elif source["type"] == "Photographs" :
                         el = PictureLocationProvider(source["dir"])
                     elif source["type"] == "Wi-Fi" :

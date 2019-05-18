@@ -41,9 +41,10 @@ if __name__ == '__main__':
         conf.add_element("date", date_crime)
         conf.add_element("latitude", args.latitude)
         conf.add_element("longitude", args.longitude)
+        Location.set_api_key(conf.get_element('google_api_key'))
         lieu_crime = Location(args.latitude, args.longitude)
 
-        #-t Z4bLkruoqSp0JXJfJGTaMQEZo -u gYyLCa7QiDje76VaTttlylDjGThCBGcp9MIcEGlzVq6FJcXIdc -g AIzaSyBsgJp3ElinD9-T5r2Fbcg0AABR7caito -lat 46.520378 -lng 46.520378 -d "01/04/2019 17:30:20" -s "../data/suspects.json"
+        #-t Z4bLkruoqSp0JXJfJGTaMQEZo -u gYyLCa7QiDje76VaTttlylDjGThCBGcp9MIcEGlzVq6FJcXIdc -g AIzaSyBsgJp_3ElinD9-T5r2Fbcg0AABR7caito -lat 46.520378 -lng 46.520378 -d "01/04/2019 17:30:20" -s "../data/suspects.json"
         print(conf)
         '''print(conf)
         print(lieu_crime)
@@ -51,6 +52,7 @@ if __name__ == '__main__':
 
         # TODO: Afficher le message d'accueil du logiciel
         print("Investigation liée au crime du " + str(date_crime) + " @" + str(lieu_crime.get_name()))
+
 
         # TODO: Lire le fichier suspect, l'analyser, construire les objets Suspect correspondants et les stocker dans une liste. Utiliser les méthodes createObjectFromXMLFile() / createObjectFromJSONFile()
         suspects = Suspect.create_suspects_from_JSON_file(args.suspect)
