@@ -17,6 +17,7 @@ class Suspect:
     def __init__(self, name : str, sources):
         self.__name = name
         self.__sources = sources
+        self.__clp = None
 
     def get_name(self):
         return self.__name
@@ -45,7 +46,11 @@ class Suspect:
             #for
         return list_suspects'''
 
+    def get_location_provider(self):
+        return self.__clp
 
+    def set_location_provider(self, clp):
+        self.__clp = clp
 
     @classmethod
     def create_suspects_from_JSON_file(cls, filename):
@@ -75,7 +80,6 @@ class Suspect:
                     list_lp.append(el)
 
                 clp = reduce(lambda x, y :CompositeLocationProvider(x, y), list_lp) #composite est une classe
-
                 list_suspects.append(Suspect(name, clp))
             except KeyError:
                 print("Le suspect " + name + " n'a pas de sources de LocationProvider associé dans le fichier JSON")

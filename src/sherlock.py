@@ -64,5 +64,8 @@ if __name__ == '__main__':
 
 
         # TODO: Pour chaque suspect, déterminer s'il a pu se rendre et repartir du lieu du crime.
+        for s in suspects:
+
+
     except Exception as e :
         print("[Erreur] L’erreur suivante est survenue durant l’exécution du programme : ", e)
