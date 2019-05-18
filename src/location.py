@@ -128,6 +128,9 @@ class LocationSample():
         return other.distance(self.__location)
 
     def __eq__(self, other):
+        if other == None :
+            return  False
+
         if isinstance(other, LocationSample):
             if self.__date - other.get_timestamp() == 0 :
                 return self.__date, " = ", other.get_timestamp()
@@ -312,23 +315,40 @@ class LocationProvider():
         date_crime = crime.get_timestamp()
         plusproche_ls = self.get_surrouding_temporal_location_samples(date_crime)
 
+
         # Calcul des temps pour que ces suspects aient pu se rendre sur le lieu/date du crime
         ls1 = plusproche_ls[0]
         ls2 = plusproche_ls[1]
+        print(ls1)
+        print(ls2)
+
+        if (ls1 == None or ls2 == None) :
+            return False
 
         lieu_crime = crime.get_location()
-        dist_et_temps1 = lieu_crime.get_travel_distance_and_time(ls1.get_location())
-        dist_et_temps2 = lieu_crime.get_travel_distance_and_time(ls2.get_location())
+
+        #calcul du temps pour aller de avant jusqu'au lieu du crime
+        dist_et_temps1 = ls1.get_location().get_travel_distance_and_time(lieu_crime)
         temps1 = dist_et_temps1[1]
+
+        #calcul du temps pour aller du crime à après
+        dist_et_temps2 = lieu_crime.get_travel_distance_and_time(ls2.get_location())
         temps2 = dist_et_temps2[1]
 
-        #temps entre les dernieres positions connues avant et apres le crime
-        delta_t = ls2.get_timestamp() - ls1.get_timestamp()
+        #temps entre avant et crime
+        delta_t1 = (crime.get_timestamp() - ls1.get_timestamp()).total_seconds()
 
-        # on renvoie True si le temps pour aller de la derniere position connue avant le crime ls1
-        # à celle après le crime ls2
-        # est supérieur au temps que suspect aurait mis faire le détour par le lieu du crime (ls1 -> crime -> ls2)
-        return (temps1 + temps2) < delta_t
+        #temps entre crime et après
+        delta_t2 = (ls2.get_timestamp() - crime.get_timestamp()).total_seconds()
+
+        # on renvoie true si on a eu le temps pour aller jusqu'au crime et le temps pour en revenir
+        #sinon on renvoie false
+        print("temps1 =", temps1, "delta_t1 =", delta_t1)
+        print("temps2 =", temps2, "delta_t2 =", delta_t2)
+        possible1 = (temps1 - delta_t1) < 0
+        possible2 = (temps2 - delta_t2) < 0
+        print("possible1 =", possible1, "possible2 =", possible2)
+        return (possible1 and possible2)
 
 
 

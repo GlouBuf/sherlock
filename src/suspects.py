@@ -14,15 +14,14 @@ from logs import *
 # TODO: Définir la classe Suspect qui décrit des informations contenues dans un fichier (nom, LocationProvider)
 class Suspect:
     # TODO: Implémenter le constructeur et les getters
-    def __init__(self, name : str, sources):
+    def __init__(self, name : str, sources : CompositeLocationProvider):
         self.__name = name
         self.__sources = sources
-        self.__clp = None
 
     def get_name(self):
         return self.__name
 
-    def get_sources(self):
+    def get_location_provider(self):
         return self.__sources
 
 
@@ -46,11 +45,6 @@ class Suspect:
             #for
         return list_suspects'''
 
-    def get_location_provider(self):
-        return self.__clp
-
-    def set_location_provider(self, clp):
-        self.__clp = clp
 
     @classmethod
     def create_suspects_from_JSON_file(cls, filename):

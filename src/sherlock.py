@@ -8,7 +8,7 @@ def conversion_date(d) :
     return datetime.strptime(d, "%d/%m/%Y %H:%M:%S")
 
 if __name__ == '__main__':
-    try:
+    #try:
         DESCRIPTION = "Identifie les suspects les plus plausibles à partir de leurs traces de mobilité (issues de sources " \
                       "multiples incluant les tweets géo-taggés, les traces Wi-Fi et les flux de photos géo-taggées) pour un crime spécifié " \
                       "par une date/heure et une localisation"
@@ -64,8 +64,27 @@ if __name__ == '__main__':
 
 
         # TODO: Pour chaque suspect, déterminer s'il a pu se rendre et repartir du lieu du crime.
+        print(" ")
+        print("-----------SUSPECTS POSSIBLES POUR LE CRIME :")
+
+        crime = LocationSample(date_crime, lieu_crime)
+        print(crime)
+
+
         for s in suspects:
+            print("")
+            print("on examine le suspect : ", s.get_name())
+            clp = s.get_location_provider()
+            ls = clp.show_location_samples(crime, True, s.get_name())
+
+            if clp != [] :
+                if clp.could_have_been_there(crime) :
+                    print(s.get_name(), "\t a eu le temps de commettre le crime")
+                else :
+                    print(s.get_name(), "\t n'a pas eu le temps de commettre le crime ou bien nous ne disposons pas de suffisement d'information")
+            else :
+                print("\t n'a pas de location provider")
 
 
-    except Exception as e :
-        print("[Erreur] L’erreur suivante est survenue durant l’exécution du programme : ", e)
+    #except Exception as e :
+        #print("[Erreur] L’erreur suivante est survenue durant l’exécution du programme : ", e)
