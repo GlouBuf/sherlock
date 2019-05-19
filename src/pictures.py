@@ -54,7 +54,7 @@ class PictureLocationProvider(ListLocationProvider):
         (t, lat, lng) = (None, None, None)
 
         with open(filename, 'rb') as f:
-            print("Picture LocationProvider, on lit l'image : " + filename)
+            #print("Picture LocationProvider, on lit l'image : " + filename)
             exif_data = exifread.process_file(f)
 
             gps_latitude = utils.get_if_exists(exif_data, 'GPS GPSLatitude')

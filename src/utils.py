@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import exifread
 import time
+from datetime import datetime, timezone, timedelta
+
 import itertools
 
 
@@ -50,6 +52,15 @@ def sec2time(sec, n_msec=0):
     if d == 0:
         return pattern % (h, m, s)
     return ('%d days, ' + pattern) % (d, h, m, s)
+
+# Les dates des tweets sont dans la timezone UTC, il faut convertir dans la timezone locale
+# au moment du tweet. On utilise pour cela la fonction utc2local récupéré sur le web
+# Voir post 36 de https://stackoverflow.com/questions/4770297/convert-utc-datetime-string-to-local-datetime/4771733#4771733
+# la version en bas du post
+def utc2local (utc):
+    epoch = time.mktime(utc.timetuple())
+    offset = datetime.fromtimestamp (epoch) - datetime.utcfromtimestamp (epoch)
+    return utc + offset
 
 if __name__ == '__main__':
     print("zero\n" + indent("one\n" + indent("two\nthree", "\t−")))

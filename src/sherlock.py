@@ -27,7 +27,7 @@ if __name__ == '__main__':
 
         args = parser.parse_args()
         d= args.date
-        print("date = " + d)
+        #print("date = " + d)
 
 
         # TODO: Stocker les paramètres importants dans un objet Configuration accessible depuis tous les modules du programme
@@ -51,7 +51,7 @@ if __name__ == '__main__':
 
         #-t Z4bLkruoqSp0JXJfJGTaMQEZo -u gYyLCa7QiDje76VaTttlylDjGThCBGcp9MIcEGlzVq6FJcXIdc -g AIzaSyBsgJp_3ElinD9-T5r2Fbcg0AABR7caito -lat 46.522662 -lng 6.577305 -d "06/05/2019 10:19:23" -s "../data/suspects.json"
 
-        print(conf)
+        #print(conf)
         '''print(conf)
         print(lieu_crime)
         print(date_crime)'''

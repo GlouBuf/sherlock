@@ -26,8 +26,9 @@ class TwitterLocationProvider(ListLocationProvider):
 
         client = tweepy.API(auth)
         user = client.me()
-        name = user.name
-        print(name)
+        self.nom = user.name
+        print("Nom twitter :", self.nom)
+
         public_tweets = client.user_timeline()
 
         self.__samples = []
@@ -42,10 +43,10 @@ class TwitterLocationProvider(ListLocationProvider):
                 long = tuple[2]
 
                 ls = LocationSample(date, Location(lat, long))
-                print(ls)
+                #print(ls)
                 self.__samples.append(ls)
-            except :
-                print("Pas de données disponibles")
+            except ValueError as e:
+                print("Warning: Skipping tweet (Missing time and/or location information (" + str(e) + "))")
 
         # Appel du constructeur de la classe mere
         super().__init__(self.__samples)
@@ -74,16 +75,28 @@ class TwitterLocationProvider(ListLocationProvider):
 
         try :
             #date = datetime.strptime(tweet._json["created_at"], "%a %b %d %H:%M:%S +0000 %Y")
-            date = tweet.created_at
-            print(date)
+
+            # Les dates des tweets sont dans la timezone UTC, il faut convertir dans la timezone locale
+            # au moment du tweet. On utilise pour cela la fonction utc2local récupéré sur le web
+            # Voir post 36 de https://stackoverflow.com/questions/4770297/convert-utc-datetime-string-to-local-datetime/4771733#4771733
+            # la version en bas du post.
+            # On a mis la fonction dans utils.py
+            dateUTC = tweet.created_at
+            print("Date UTC = " + str(dateUTC))
+            date = utc2local(dateUTC)
+
+            print("Date local time: " + str(date))
 
             lat = tweet.place.bounding_box.coordinates[0][0][1]
             long = tweet.place.bounding_box.coordinates[0][0][0]
         except:
-            raise ValueError
+            raise ValueError(tweet.id)
             return
 
         return (date, lat, long)
+
+
+
 
 
 if __name__ == '__main__':

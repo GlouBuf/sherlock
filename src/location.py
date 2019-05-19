@@ -48,11 +48,12 @@ class Location():
     @staticmethod
     def set_api_key(key):
         if not Location.__check_api_init():
-            print("INIT")
+            #print("INIT")
             Location.__api_key = key
             Location.__gmaps_client = googlemaps.Client(Location.__api_key)
         else:
-            print("DEJA INIT")
+            #print("DEJA INIT")
+            pass
 
 
     @staticmethod
