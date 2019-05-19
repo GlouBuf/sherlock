@@ -1,35 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d2f65a22-edba-45e5-bcd8-cad0485c4d1c" name="Default Changelist" comment="Insertion des nouvelles données">
-      <change afterPath="$PROJECT_DIR$/InstructionsNouvellesDonnees.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SujetProjet_mise_a_jour_5_mai.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/db/wifi.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/db/wifi.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/pics/biales/IMG_20190412_153315.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/pics/deray/IMG_9023.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/pics/deray/IMG_9027.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/pics/deray/IMG_9028.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/pics/deray/IMG_9050.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/pics/emileG/IMG_20180516_111120.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/pics/emileG/IMG_20180516_111548.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/pics/emileG/IMG_20180516_112906.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/pics/gravier/IMG_20180516_111348.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/pics/gravier/IMG_20180516_111420.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/pics/gravier/IMG_20180516_111750.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/pics/martoni/IMG_9102.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/pics/martoni/IMG_9108.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/pics/martoni/IMG_9125.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/pics/martoni/IMG_9127.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/pics/simon/IMG_0004.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/pics/simon/IMG_0007.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/pics/simon/IMG_0012.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/pics/simon/IMG_0015.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/suspects.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/suspects.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/suspects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/data/suspects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sherlock.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/sherlock.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/twitter.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/twitter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sujet-du-projet.pdf" beforeDir="false" />
+    <list default="true" id="d2f65a22-edba-45e5-bcd8-cad0485c4d1c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/data/pics/bhorne/IMG_20190416_103507.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/bhorne/IMG_20190416_103528.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/bhorne/IMG_20190416_103835.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/bhorne/IMG_20190416_103915.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/bhorne/IMG_20190416_104020.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/bhorne/IMG_20190416_104210.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/bhorne/IMG_20190416_104334.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/bhorne/IMG_20190416_104407.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/bhorne/IMG_20190416_104536.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/bhorne/IMG_20190416_104638.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/bhorne/IMG_20190416_104641.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/hjennings/20190416_103339.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/hjennings/20190416_103607.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/hjennings/20190416_103705.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/hjennings/20190416_103807.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/hjennings/20190416_103813.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/hjennings/20190416_104218.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/hjennings/20190416_104337.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/hjennings/20190416_104436.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/hjennings/20190416_104543.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/hjennings/20190416_104703.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/hjennings/20190416_104824.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/hjennings/20190416_105000.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/hjennings/20190416_105013.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/hjennings/20190416_105022.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/hjennings/20190416_105044.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/ljohnson/IMG_20190506_101246.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/ljohnson/IMG_20190506_101348.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/ljohnson/IMG_20190506_101443.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/ljohnson/IMG_20190506_101600.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/ljohnson/IMG_20190506_102322.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/ljohnson/IMG_20190506_102625.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/ljohnson/IMG_20190506_102855.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/ljohnson/IMG_20190506_102858.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/ljohnson/IMG_20190506_103259.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/ljohnson/IMG_20190506_103356.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/ljohnson/IMG_20190506_103516.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/ljohnson/IMG_20190506_103731.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/ljohnson/IMG_20190506_103921.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/lpalmer/IMG_20190506_101202.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/lpalmer/IMG_20190506_101230.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/lpalmer/IMG_20190506_101248.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/lpalmer/IMG_20190506_101353.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/lpalmer/IMG_20190506_101443.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/lpalmer/IMG_20190506_101453.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/lpalmer/IMG_20190506_101550.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/lpalmer/IMG_20190506_101555.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/lpalmer/IMG_20190506_101758.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/lpalmer/IMG_20190506_101805.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/lpalmer/IMG_20190506_102118.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/lpalmer/IMG_20190506_102141.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/lpalmer/IMG_20190506_102205.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/lpalmer/IMG_20190506_102255.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/lpalmer/IMG_20190506_102435.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/lpalmer/IMG_20190506_102449.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/lpalmer/IMG_20190506_102546.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/pics/lpalmer/IMG_20190506_102607.jpg" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +80,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/twitter.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
@@ -96,11 +125,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sherlock.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="46" column="214" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="214" />
+            <state relative-caret-position="483">
+              <caret line="83" column="22" selection-start-line="83" selection-start-column="22" selection-end-line="83" selection-end-column="22" />
               <folding>
                 <element signature="e#24#39#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/data/suspects.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="268">
+              <caret line="24" column="18" lean-forward="true" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -110,18 +148,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-381">
               <caret line="46" selection-start-line="46" selection-end-line="46" />
-              <folding>
-                <element signature="e#24#46#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/wifi.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="63" column="52" selection-start-line="63" selection-start-column="52" selection-end-line="63" selection-end-column="52" />
               <folding>
                 <element signature="e#24#46#0" expanded="true" />
               </folding>
@@ -180,8 +206,8 @@
         <option value="$PROJECT_DIR$/src/utils.py" />
         <option value="$PROJECT_DIR$/src/location.py" />
         <option value="$PROJECT_DIR$/src/testTweepy.py" />
-        <option value="$PROJECT_DIR$/src/sherlock.py" />
         <option value="$PROJECT_DIR$/src/twitter.py" />
+        <option value="$PROJECT_DIR$/src/sherlock.py" />
       </list>
     </option>
   </component>
@@ -220,6 +246,12 @@
               <item name="sherlock" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
               <item name="logs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sherlock" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sherlock" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="pics" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sherlock" type="b2602c69:ProjectViewProjectNode" />
@@ -466,7 +498,14 @@
       <option name="project" value="LOCAL" />
       <updated>1558258568195</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Insertion des nouvelles données&#10;Mise à jour de la nouvelle ligne de commande avec le nouveau crime">
+      <created>1558271785463</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1558271785463</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TodoView" selected-index="5">
@@ -480,20 +519,21 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="51" y="23" width="1584" height="985" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22015405" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22015405" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="DB Browser" order="3" weight="0.32950422" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.43195266" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.43195266" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3289941" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.2" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32781065" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32781065" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="bottom" id="DB Execution Console" order="11" weight="0.3289941" />
@@ -573,7 +613,8 @@
     <MESSAGE value="Correction de get_name() dans Location dans la partie reverse &#10;geocoding" />
     <MESSAGE value="Plein de petites corrections dans les print pour tester la détermination&#10;des suspects dans sherlock.py&#10;&#10;Correction du nom de get_surrouNding_samples dans location.py&#10;&#10;Ajout de secToTime dans utils.py pour afficher de manière plus sympa&#10;des temps en secondes." />
     <MESSAGE value="Suppression de ma clé secrète twitter" />
-    <option name="LAST_COMMIT_MESSAGE" value="Suppression de ma clé secrète twitter" />
+    <MESSAGE value="Insertion des nouvelles données&#10;Mise à jour de la nouvelle ligne de commande avec le nouveau crime" />
+    <option name="LAST_COMMIT_MESSAGE" value="Insertion des nouvelles données&#10;Mise à jour de la nouvelle ligne de commande avec le nouveau crime" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -663,13 +704,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="158">
           <caret line="137" selection-start-line="137" selection-end-line="137" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/suspects.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="37" lean-forward="true" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -804,16 +838,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sherlock.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="46" column="214" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="214" />
-          <folding>
-            <element signature="e#24#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/twitter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -821,6 +845,23 @@
           <folding>
             <element signature="e#24#46#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sherlock.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="83" column="22" selection-start-line="83" selection-start-column="22" selection-end-line="83" selection-end-column="22" />
+          <folding>
+            <element signature="e#24#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/suspects.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="24" column="18" lean-forward="true" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
         </state>
       </provider>
     </entry>
