@@ -44,7 +44,8 @@ if __name__ == '__main__':
         Location.set_api_key(conf.get_element('google_api_key'))
         lieu_crime = Location(args.latitude, args.longitude)
 
-        #-t Z4bLkruoqSp0JXJfJGTaMQEZo -u gYyLCa7QiDje76VaTttlylDjGThCBGcp9MIcEGlzVq6FJcXIdc -g AIzaSyBsgJp_3ElinD9-T5r2Fbcg0AABR7caito -lat 46.520378 -lng 46.520378 -d "01/04/2019 17:30:20" -s "../data/suspects.json"
+        #-t Z4bLkruoqSp0JXJfJGTaMQEZo -u gYyLCa7QiDje76VaTttlylDjGThCBGcp9MIcEGlzVq6FJcXIdc -g AIzaSyBsgJp_3ElinD9-T5r2Fbcg0AABR7caito -lat 46.522662 -lng 6.577305 -d "06/05/2019 10:19:23" -s "../data/suspects.json"
+
         print(conf)
         '''print(conf)
         print(lieu_crime)
@@ -68,13 +69,14 @@ if __name__ == '__main__':
         print("-----------SUSPECTS POSSIBLES POUR LE CRIME :")
 
         crime = LocationSample(date_crime, lieu_crime)
-        print(crime)
+        #print(crime)
 
 
         for s in suspects:
-            print("")
-            print("On examine le suspect : ", s.get_name())
-            print("-----------")
+            print()
+            print("--------------------------------------")
+            print("########### On examine le suspect : ", s.get_name(), "##########")
+            print("--------------------------------------")
             clp = s.get_location_provider()
 
             if clp != [] :

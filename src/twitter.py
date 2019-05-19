@@ -16,7 +16,7 @@ class TwitterLocationProvider(ListLocationProvider):
         self.set_api_key_secret(key_secret)
         #todo : aller chercher les tweet et appeler extract location sample from tweet FAIRE COMME DANS PICTURES
         self.__samples = []
-        self.__samples = self._extract_location_sample_from_tweet()
+        #self.__samples = self._extract_location_sample_from_tweet()
 
 
         # Appel du constructeur de la classe mere
