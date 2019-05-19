@@ -41,8 +41,13 @@ if __name__ == '__main__':
         conf.add_element("date", date_crime)
         conf.add_element("latitude", args.latitude)
         conf.add_element("longitude", args.longitude)
+
         Location.set_api_key(conf.get_element('google_api_key'))
+        TwitterLocationProvider.set_api_key(conf.get_element('twitter_api_key'))
+        TwitterLocationProvider.set_api_key_secret(conf.get_element('twitter_api_key_secret'))
+
         lieu_crime = Location(args.latitude, args.longitude)
+
 
         #-t Z4bLkruoqSp0JXJfJGTaMQEZo -u gYyLCa7QiDje76VaTttlylDjGThCBGcp9MIcEGlzVq6FJcXIdc -g AIzaSyBsgJp_3ElinD9-T5r2Fbcg0AABR7caito -lat 46.522662 -lng 6.577305 -d "06/05/2019 10:19:23" -s "../data/suspects.json"
 

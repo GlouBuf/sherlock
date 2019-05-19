@@ -31,10 +31,21 @@ class TwitterLocationProvider(ListLocationProvider):
         public_tweets = client.user_timeline()
 
         self.__samples = []
+        tuple = None
 
         for tweet in public_tweets:
-            print(tweet.text)
-            self.__samples = self._extract_location_sample_from_tweet(tweet)
+            try :
+                #print(tweet.text)
+                tuple = self._extract_location_sample_from_tweet(tweet)
+                date = tuple[0]
+                lat = tuple[1]
+                long = tuple[2]
+
+                ls = LocationSample(date, Location(lat, long))
+                print(ls)
+                self.__samples.append(ls)
+            except :
+                print("Pas de données disponibles")
 
         # Appel du constructeur de la classe mere
         super().__init__(self.__samples)
@@ -58,11 +69,21 @@ class TwitterLocationProvider(ListLocationProvider):
     # TODO: Implémenter la méthode _extract_location_sample_from_tweet qui prend en paramètre un tweet et renvoie un tuple (temps, latitude, longitude)
     # Comme pour la méthode de Picture, vérifier que les paramètres sont bien présents dans le tweet
     def _extract_location_sample_from_tweet(self, tweet):
-        print(json.dumps(tweet._json, indent=3))
+        #print(json.dumps(tweet._json, indent=3))
+        #print(tweet._json["created_at"])
 
+        try :
+            #date = datetime.strptime(tweet._json["created_at"], "%a %b %d %H:%M:%S +0000 %Y")
+            date = tweet.created_at
+            print(date)
 
+            lat = tweet.place.bounding_box.coordinates[0][0][1]
+            long = tweet.place.bounding_box.coordinates[0][0][0]
+        except:
+            raise ValueError
+            return
 
-        return []
+        return (date, lat, long)
 
 
 if __name__ == '__main__':
@@ -73,6 +94,7 @@ if __name__ == '__main__':
     TwitterLocationProvider.set_api_key_secret('gYyLCa7QiDje76VaTttlylDjGThCBGcp9MIcEGlzVq6FJcXIdc')
 
     lp = TwitterLocationProvider('1_isp','1124333850858074115-q2xK5TcnlRLGMk9QO1vMSi9RTcH6Sk','B8YQzoO01Dze2D3CaJLukuvXKRZn0VtSpPuCtYccdKYSZ')
+    lp.show_location_samples()
 
 
 
