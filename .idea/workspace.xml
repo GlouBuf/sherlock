@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2f65a22-edba-45e5-bcd8-cad0485c4d1c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/testTweepy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/location.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/location.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sherlock.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/sherlock.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/suspects.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/suspects.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/twitter.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/twitter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/testTweepy.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/testTweepy.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,11 +25,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/twitter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="70" column="67" selection-start-line="70" selection-start-column="67" selection-end-line="70" selection-end-column="67" />
+            <state relative-caret-position="363">
+              <caret line="71" column="69" selection-start-line="71" selection-start-column="69" selection-end-line="71" selection-end-column="69" />
               <folding>
                 <element signature="e#24#46#0" expanded="true" />
               </folding>
@@ -51,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/testTweepy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="14" column="73" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="73" />
+            <state relative-caret-position="191">
+              <caret line="14" column="56" lean-forward="true" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
@@ -159,8 +154,8 @@
         <option value="$PROJECT_DIR$/src/utils.py" />
         <option value="$PROJECT_DIR$/src/sherlock.py" />
         <option value="$PROJECT_DIR$/src/location.py" />
-        <option value="$PROJECT_DIR$/src/testTweepy.py" />
         <option value="$PROJECT_DIR$/src/twitter.py" />
+        <option value="$PROJECT_DIR$/src/testTweepy.py" />
       </list>
     </option>
   </component>
@@ -424,7 +419,21 @@
       <option name="project" value="LOCAL" />
       <updated>1557941298283</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Plein de petites corrections dans les print pour tester la détermination&#10;des suspects dans sherlock.py&#10;&#10;Correction du nom de get_surrouNding_samples dans location.py&#10;&#10;Ajout de secToTime dans utils.py pour afficher de manière plus sympa&#10;des temps en secondes.">
+      <created>1558257128551</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1558257128551</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Suppression de ma clé secrète twitter">
+      <created>1558258513078</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1558258513078</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView" selected-index="5">
@@ -438,20 +447,21 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="51" y="23" width="1584" height="985" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22015405" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22015405" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="DB Browser" order="3" weight="0.32950422" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.43195266" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.43195266" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3289941" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.2" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32781065" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32781065" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="bottom" id="DB Execution Console" order="11" weight="0.3289941" />
@@ -529,7 +539,9 @@
     <MESSAGE value="Added logs readings" />
     <MESSAGE value="Implemented get_surrounding_location_samples avec calcul dans la requête&#10;SQL, fichier wifi.py" />
     <MESSAGE value="Correction de get_name() dans Location dans la partie reverse &#10;geocoding" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correction de get_name() dans Location dans la partie reverse &#10;geocoding" />
+    <MESSAGE value="Plein de petites corrections dans les print pour tester la détermination&#10;des suspects dans sherlock.py&#10;&#10;Correction du nom de get_surrouNding_samples dans location.py&#10;&#10;Ajout de secToTime dans utils.py pour afficher de manière plus sympa&#10;des temps en secondes." />
+    <MESSAGE value="Suppression de ma clé secrète twitter" />
+    <option name="LAST_COMMIT_MESSAGE" value="Suppression de ma clé secrète twitter" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -753,16 +765,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/testTweepy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="14" column="73" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="73" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sherlock3/lib/python3.7/site-packages/tweepy/auth.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="163">
@@ -772,10 +774,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/twitter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="70" column="67" selection-start-line="70" selection-start-column="67" selection-end-line="70" selection-end-column="67" />
+        <state relative-caret-position="363">
+          <caret line="71" column="69" selection-start-line="71" selection-start-column="69" selection-end-line="71" selection-end-column="69" />
           <folding>
             <element signature="e#24#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/testTweepy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="14" column="56" lean-forward="true" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
           </folding>
         </state>
       </provider>
