@@ -6,6 +6,7 @@ import time
 from configuration import *
 import html
 from datetime import datetime, timezone, timedelta
+import json
 
 # TODO: Définir la classe TwitterLocationProvider
 class TwitterLocationProvider(ListLocationProvider):
@@ -24,13 +25,16 @@ class TwitterLocationProvider(ListLocationProvider):
         auth.set_access_token(self.__token, self.__token_secret)
 
         client = tweepy.API(auth)
-
-        user = client.me()  # obtenir les information sur l'utilisateur connecté
-        print(client, auth)
+        user = client.me()
+        name = user.name
+        print(name)
+        public_tweets = client.user_timeline()
 
         self.__samples = []
-        #self.__samples = self._extract_location_sample_from_tweet()
 
+        for tweet in public_tweets:
+            print(tweet.text)
+            self.__samples = self._extract_location_sample_from_tweet(tweet)
 
         # Appel du constructeur de la classe mere
         super().__init__(self.__samples)
@@ -53,7 +57,8 @@ class TwitterLocationProvider(ListLocationProvider):
 
     # TODO: Implémenter la méthode _extract_location_sample_from_tweet qui prend en paramètre un tweet et renvoie un tuple (temps, latitude, longitude)
     # Comme pour la méthode de Picture, vérifier que les paramètres sont bien présents dans le tweet
-    def _extract_location_sample_from_tweet(self):
+    def _extract_location_sample_from_tweet(self, tweet):
+        print(json.dumps(tweet._json, indent=3))
 
 
 
