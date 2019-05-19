@@ -73,7 +73,10 @@ class Suspect:
                         el = LogsLocationProvider(source["file"])
                     list_lp.append(el)
 
+                # composite location provider
                 clp = reduce(lambda x, y :CompositeLocationProvider(x, y), list_lp) #composite est une classe
+
+                # On ajoute le suspect
                 list_suspects.append(Suspect(name, clp))
             except KeyError:
                 print("Le suspect " + name + " n'a pas de sources de LocationProvider associé dans le fichier JSON")

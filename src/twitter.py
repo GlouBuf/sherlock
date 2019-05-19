@@ -16,7 +16,7 @@ class TwitterLocationProvider(ListLocationProvider):
         self.set_api_key_secret(key_secret)
         #todo : aller chercher les tweet et appeler extract location sample from tweet FAIRE COMME DANS PICTURES
         self.__samples = []
-        #self.__samples = self._extract_location_sample_from_tweet()
+        self.__samples = self._extract_location_sample_from_tweet()
 
 
         # Appel du constructeur de la classe mere
@@ -40,6 +40,10 @@ class TwitterLocationProvider(ListLocationProvider):
         consumer_key = self.__api_key
         consumer_secret = self.__api_key_secret
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+        # Get access token
+        #self.__access_token = None
+        #self.__access_token_secret = None
+        #auth.set_access_token(self.__access_token, self.__access_token_secret)
         client = tweepy.API(auth)
 
         user = client.me()  # obtenir les information sur l'utilisateur connecté
@@ -55,7 +59,20 @@ if __name__ == '__main__':
     Configuration.get_instance().add_element("verbose", True)
     #TwitterLocationProvider.set_api_key('Z4bLkruoqSp0JXJfJGTaMQEZo')
     #TwitterLocationProvider.set_api_key_secret('gYyLCa7QiDje76VaTttlylDjGThCBGcp9MIcEGlzVq6FJcXIdc')
-    lp = TwitterLocationProvider('egravier1994','996422909735391233-kLWsObS61ghUmpgS2ZXTZElQ2n5Tt9Z','BXqtUZI2pBUOgDyOVY21svUHyP8iabA98kdT4GpZlWWNC')
+    #lp = TwitterLocationProvider('egravier1994','996422909735391233-kLWsObS61ghUmpgS2ZXTZElQ2n5Tt9Z','BXqtUZI2pBUOgDyOVY21svUHyP8iabA98kdT4GpZlWWNC')
+    #lp = TwitterLocationProvider('egravier1994', '996422909735391233-kLWsObS61ghUmpgS2ZXTZElQ2n5Tt9Z',
+    #                             'BXqtUZI2pBUOgDyOVY21svUHyP8iabA98kdT4GpZlWWNC')
+    #lp = TwitterLocationProvider('egravier1994', 'Z4bLkruoqSp0JXJfJGTaMQEZ',
+    #                                                          'gYyLCa7QiDje76VaTttlylDjGThCBGcp9MIcEGlzVq6FJcXIdc')
+
+    # CLES VALIDES ICI (je les ai demandées à twitter), mais le code fourni ne fonctionne pas.
+    # exécute testTweepy.py tu va voir, ça ouvre une page Web chez twitter qui affiche un code que tu dois
+    # ensuite saisir pour que çà marche... et visiblement le code de tes profs
+    # date de l'an dernier et je pense que cela a changé depuis....
+    lp = TwitterLocationProvider('egravier1994', 'lSjQ9ctPFYbN4UwAAKPJ2PLIh',
+                                                              'BQaeK9KkTC2giAwVsZbo4yfwgyByBvjdI50PnsxFTWAe7gxWOL')
+
+
     print(lp)
     lp.print_location_samples()
     lp.show_location_samples()

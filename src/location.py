@@ -186,6 +186,8 @@ class LocationProvider():
     def __init__(self):
         pass
 
+    # TODO: Définir la méthode str de sorte à afﬁcher un objet LocationProvider sous la forme suivante :
+    # LocationProvider (5 location samples)
     def __str__(self):
         return self.__class__.__name__ + " (" + str(len(self.get_location_samples())) + " location samples)"
 
@@ -213,8 +215,8 @@ class LocationProvider():
         if len(samples) == 0:
             return
 
-        for s in samples:
-            print(s.get_location())
+        #for s in samples:
+        #    print(s.get_location())
 
         coordinates = [(sample.get_location().get_latitude(), sample.get_location().get_longitude()) for sample in
                        samples]
@@ -247,6 +249,11 @@ class LocationProvider():
                 (ls_before, ls_after) = self.get_surrounding_temporal_location_samples(marker.get_timestamp())
 
                 # determine the compatibility based on the time needed and the actual time (elapsed)
+
+                # If one is none we can't display
+                if(ls_before == None or ls_after == None):
+                    return
+
                 dt_before_actual = marker.get_timestamp() - ls_before.get_timestamp()
                 _, dt_before_needed = ls_before.get_location().get_travel_distance_and_time(marker.get_location())
 
@@ -290,7 +297,7 @@ class LocationProvider():
                       file=sys.stderr)
 
     # TODO: Implémenter la méthode get_surrounding_temporal_location_samples qui prend en paramètre un datetime et renvoie les objets LocationSample (via get_location_samples) situés juste avant et après le datetime
-    def get_surrouding_temporal_location_samples(self, date : datetime):
+    def get_surrounding_temporal_location_samples(self, date : datetime):
         # on recupère les LocationSample
         ls = self.get_location_samples()
         ls.sort()
@@ -310,22 +317,25 @@ class LocationProvider():
     # TODO: Implémenter la méthode could_have_been_there qui prend en paramètre un LocationSample et renvoie si un suspect a eu le temps de s'y rendre
     def could_have_been_there(self, crime : LocationSample):
         # crime = la date et le lieu du crime
+        lieu_crime = crime.get_location()
+        date_crime = crime.get_timestamp()
 
         # Plus proches LocationSample d'un suspect (ceux qui sont juste avant et après la date du crime)
-        date_crime = crime.get_timestamp()
-        plusproche_ls = self.get_surrouding_temporal_location_samples(date_crime)
+        plusproche_ls = self.get_surrounding_temporal_location_samples(date_crime)
 
 
         # Calcul des temps pour que ces suspects aient pu se rendre sur le lieu/date du crime
         ls1 = plusproche_ls[0]
         ls2 = plusproche_ls[1]
-        print(ls1)
-        print(ls2)
+
+        print("Avant :", ls1)
+        print("Date et lieu du crime : ", date_crime, lieu_crime)
+        print("Après :", ls2)
+        print("-----")
 
         if (ls1 == None or ls2 == None) :
             return False
 
-        lieu_crime = crime.get_location()
 
         #calcul du temps pour aller de avant jusqu'au lieu du crime
         dist_et_temps1 = ls1.get_location().get_travel_distance_and_time(lieu_crime)
@@ -343,17 +353,32 @@ class LocationProvider():
 
         # on renvoie true si on a eu le temps pour aller jusqu'au crime et le temps pour en revenir
         #sinon on renvoie false
-        print("temps1 =", temps1, "delta_t1 =", delta_t1)
-        print("temps2 =", temps2, "delta_t2 =", delta_t2)
+        print("temps1 gmap pour déplacement de avant jq crime) =", sec2time(temps1), "delta_t1 (date crime - date avant) =", sec2time(delta_t1))
         possible1 = (temps1 - delta_t1) < 0
+
+        if(possible1):
+            msg1 = "POSSIBLE"
+        else:
+            msg1 = "IMPOSSIBLE"
+
+        print("Déplacement avant -> crime", msg1, "(" + sec2time(temps1) + " < " + sec2time(delta_t1))
+
+
+        print("temps2 gmap pour déplacement crime jq après) =", sec2time(temps2), "delta_t2 (date après - date crime) =", sec2time(delta_t2))
         possible2 = (temps2 - delta_t2) < 0
-        print("possible1 =", possible1, "possible2 =", possible2)
+
+        if (possible2):
+            msg2 = "POSSIBLE"
+        else:
+            msg2 = "IMPOSSIBLE"
+
+        print("Déplacement crime -> après", msg2, "(" + sec2time(temps2) + " < " + sec2time(delta_t2))
+
+        # Crime possible pour ce suspect si il a pu se rendre de avant jq crime et de crime jq apres
         return (possible1 and possible2)
 
 
 
-    # TODO: Définir la méthode str de sorte à afﬁcher un objet LocationProvider sous la forme suivante :
-    # LocationProvider (5 location samples)
 
 
 # TODO: Créer une classe qui implémente le patron de conception Composite pour la classe LocationProvider
@@ -432,7 +457,7 @@ if __name__ == '__main__':
     #print(locationsamples.get_location_samples())
 
     #locationsamples.show_location_samples()
-    result = locationsamples.get_surrouding_temporal_location_samples(crime.get_timestamp())
+    result = locationsamples.get_surrounding_temporal_location_samples(crime.get_timestamp())
 
     print("avant : ", result[0])
     print("apres : ", result[1])
