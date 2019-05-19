@@ -1,0 +1,104 @@
+{
+  "suspects": [
+    {
+      "name": "Leland Palmer",
+      "sources": [
+        {
+          "type": "Twitter",
+          "username": "1_isp",
+          "token": "1124333850858074115-q2xK5TcnlRLGMk9QO1vMSi9RTcH6Sk",
+          "token-secret": "B8YQzoO01Dze2D3CaJLukuvXKRZn0VtSpPuCtYccdKYSZ"
+        },
+        {
+          "type": "Photographs",
+          "dir": "../data/pics/lpalmer"
+        },
+        {
+          "type": "Wi-Fi",
+          "db": "../data/db/wifi.db",
+          "username": "lpalmer"
+        }
+      ]
+    },
+    {
+      "name": "Leo Johnson",
+      "sources": [
+        {
+          "type": "Twitter",
+          "username": "LeoJohn51095069",
+          "token": "1116714893087051776-Cnbd5xFCdp5AHRuuctj5V3eDK1fR5q",
+          "token-secret": "6xttTrGEbcnvbLKIQwTO1QoMgon2vRcnIQsi4e9dq2Y2s"
+        },
+        {
+          "type": "Photographs",
+          "dir": "../data/pics/ljohnson"
+        },
+        {
+          "type": "Wi-Fi",
+          "db": "../data/db/wifi.db",
+          "username": "ljohnson"
+        },
+        {
+          "type": "Logs",
+          "file": "../data/logs/ljohnson.log"
+        }
+      ]
+    },
+    {
+      "name": "Benjamin Horne",
+      "sources": [
+        {
+          "type": "Photographs",
+          "dir": "../data/pics/bhorne"
+        },
+        {
+          "type": "Wi-Fi",
+          "db": "../data/db/wifi.db",
+          "username": "bhorne"
+        },
+        {
+          "type": "Logs",
+          "file": "../data/logs/bhorne.log"
+        }
+      ]
+    },
+    {
+      "name": "Lawrence Jacoby",
+      "sources": [
+        {
+          "type": "Twitter",
+          "username": "2Isplab",
+          "token": "1124334480112664576-pyVVcymyvMba8AtfeDjmsDt22LQBsQ",
+          "token-secret": "bpyplEUwb2mpPpqc2ryL0gKhgUuhyi2LxJ3yWRRdvZapn"
+        },
+        {
+          "type": "Wi-Fi",
+          "db": "../data/db/wifi.db",
+          "username": "ljacoby"
+        },
+        {
+          "type": "Logs",
+          "file": "../data/logs/ljacoby.log"
+        }
+      ]
+    },
+    {
+    "name": "Hank Jennings",
+      "sources": [
+        {
+          "type": "Photographs",
+          "dir": "../data/pics/hjennings"
+        },
+        {
+          "type": "Wi-Fi",
+          "db": "../data/db/wifi.db",
+          "username": "hjennings"
+        },
+        {
+          "type": "Logs",
+          "file": "../data/logs/hjennings.log"
+        }
+      ]
+    }
+  ]
+}
