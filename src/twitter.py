@@ -69,8 +69,9 @@ if __name__ == '__main__':
     # exécute testTweepy.py tu va voir, ça ouvre une page Web chez twitter qui affiche un code que tu dois
     # ensuite saisir pour que çà marche... et visiblement le code de tes profs
     # date de l'an dernier et je pense que cela a changé depuis....
+    # demande moi ma clé secrete, il ne faut pas la mettre sur github
     lp = TwitterLocationProvider('egravier1994', 'lSjQ9ctPFYbN4UwAAKPJ2PLIh',
-                                                              'BQaeK9KkTC2giAwVsZbo4yfwgyByBvjdI50PnsxFTWAe7gxWOL')
+                                                              '')
 
 
     print(lp)

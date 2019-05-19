@@ -12,7 +12,8 @@ if __name__ == "__main__":
     #consumer_key = input('Consumer key: ').strip()
     #consumer_secret = input('Consumer secret: ').strip()
     consumer_key = 'lSjQ9ctPFYbN4UwAAKPJ2PLIh'
-    consumer_secret = 'BQaeK9KkTC2giAwVsZbo4yfwgyByBvjdI50PnsxFTWAe7gxWOL'
+    # Me demander la clé secrète il ne faut pas la mettre sur github.
+    consumer_secret = ''
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 
     # Open authorization URL in browser
