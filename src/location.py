@@ -234,7 +234,7 @@ class LocationProvider():
 
         for i in range(0, len(coordinates)):
             popup = folium.Popup(folium.Html(
-                '<strong>%s</strong></br> Source: %s' % (timestamps[i].strftime('%Y-%m-%d at %I:%M:%S%p %Z'), data[i]),
+                '<strong>%s</strong></br> Source: %s' % (timestamps[i].strftime('%Y-%m-%d at %I:%M:%S%p %Z'), type(self).__name__ + data[i]),
                 script=True))
             folium.Marker(coordinates[i], popup=popup).add_to(map_)  # put markers on each and annotate with timestamps
 

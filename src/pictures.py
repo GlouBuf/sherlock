@@ -124,9 +124,12 @@ if __name__ == '__main__':
     pass
     # Tester l'implémentation de cette classe avec les instructions de ce bloc main (le résultat attendu est affiché ci-dessous)
     Configuration.get_instance().add_element("verbose", True)
-    lp = PictureLocationProvider('../data/pics/deray')
+    lp = PictureLocationProvider('../data/pics/bhorne')
     print(lp)
     lp.show_location_samples()
+    lp2 = PictureLocationProvider('../data/pics/lpalmer')
+    print(lp2)
+    lp2.show_location_samples()
     # Warning: Skipping file 'unil.jpg' (Missing time and/or location information)
     # PictureLocationProvider(source: '../data/pics/jdoe'(JPG, JPEG, jpg, jpeg), 2 location samples)
     # LocationSample[datetime: 2017-02-21 13:29:04, location: Location [latitude: 46.51744, longitude: 6.56905]]
