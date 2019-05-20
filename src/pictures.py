@@ -25,9 +25,10 @@ class PictureLocationProvider(ListLocationProvider):
                 if fichier.name.endswith(suffix):
                     source_pic_file = str(fichier)
                     try :
-                        elements_de_ls = PictureLocationProvider._extract_location_sample_from_picture(os.path.join(self.__dir, fichier.name)) #on obtient un datetime, une latitude et une longitude
+                        photo = os.path.join(self.__dir, fichier.name)
+                        elements_de_ls = PictureLocationProvider._extract_location_sample_from_picture(photo) #on obtient un datetime, une latitude et une longitude
                         location_de_ls = Location(elements_de_ls[1], elements_de_ls[2])
-                        ls = LocationSample(elements_de_ls[0], location_de_ls)  # on crée un LocationSample
+                        ls = LocationSample(elements_de_ls[0], location_de_ls, "Picture", photo)  # on crée un LocationSample
                         __samples.append(ls)
                     except ValueError :
                         print("PAS DE DONNEES EXIF DANS L'image " + fichier.name + " fichier ignoré : on passe au fichier suivant.")
@@ -94,7 +95,8 @@ class PictureLocationProvider(ListLocationProvider):
 
                 d = ltimestamp - datetime(1900, 1, 1)
                 # TODO: Convertir la date (au format textuel) contenue dans le EXIF tag en datetime et le stocker dans la variable t
-                t = datetime(int(ldate[0]), int(ldate[1]), int(ldate[2])) + d
+                tUTC = datetime(int(ldate[0]), int(ldate[1]), int(ldate[2])) + d
+                t = utc2local(tUTC)
 
         return t, lat, lng
 

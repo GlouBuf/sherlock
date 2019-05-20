@@ -58,7 +58,7 @@ class LogsLocationProvider(ListLocationProvider):
 if __name__ == '__main__':
     pass
     # Tester l'implémentation de cette classe avec les instructions de ce bloc main (le résultat attendu est affiché ci-dessous)
-    lp = LogsLocationProvider('../data/logs/patrick_biales.log')
+    lp = LogsLocationProvider('../data/logs/bhorne.log')
     print(lp)
     lp.show_location_samples()
     lp.print_location_samples()

@@ -93,16 +93,9 @@ if __name__ == '__main__':
     pass
     # Tester l'implémentation de cette classe avec les instructions de ce bloc main (le résultat attendu est affiché ci-dessous)
     #Configuration.get_instance().add_element("verbose", True)
-    lp = WifiLogsLocationProvider('../data/db/wifi.db', 'egravier')
-    print(" --- Liste des Locations samples de egravier ---")
+    lp = WifiLogsLocationProvider('../data/db/wifi.db', 'lpalmer')
+    #print(" --- Liste des Locations samples de lpalmer ---")
     print(lp.print_location_samples())
-    print()
-    print("--- Test de get_surrounding_temporal_location_sample avec requête SQL qui fait le calcul... ---")
-    print("On teste avec une date du crime 2018-4-16 11:16:23")
-    print("Le bon résultat pour le LocationSample le plus proche AVANT et APRES cette date:")
-    plus_proches_ls = lp.get_surrounding_temporal_location_sample(datetime(2018,5,16,11,16,23))
-    print("Avant = ", plus_proches_ls[0])
-    print("Après = ", plus_proches_ls[1])
     #lp.show_location_samples()
 
     # WifiLogsLocationProvider (source: '../data/db/wifi.db', user 'egravier', 4 location samples)

@@ -51,10 +51,6 @@ if __name__ == '__main__':
 
         #-t Z4bLkruoqSp0JXJfJGTaMQEZo -u gYyLCa7QiDje76VaTttlylDjGThCBGcp9MIcEGlzVq6FJcXIdc -g AIzaSyBsgJp_3ElinD9-T5r2Fbcg0AABR7caito -lat 46.522662 -lng 6.577305 -d "06/05/2019 10:19:23" -s "../data/suspects.json"
 
-        #print(conf)
-        '''print(conf)
-        print(lieu_crime)
-        print(date_crime)'''
 
         # TODO: Afficher le message d'accueil du logiciel
         print("Investigation liée au crime du " + str(date_crime) + " @" + str(lieu_crime.get_name()))
