@@ -49,7 +49,7 @@ class TwitterLocationProvider(ListLocationProvider):
                 lat = tuple[1]
                 long = tuple[2]
 
-                ls = LocationSample(date, Location(lat, long))
+                ls = LocationSample(date, Location(lat, long), "twitter")
                 #print(ls)
                 self.__samples.append(ls)
             except ValueError as e:

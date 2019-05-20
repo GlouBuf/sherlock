@@ -22,7 +22,7 @@ class LogsLocationProvider(ListLocationProvider):
             for line in f.readlines():
                 tuple = LogsLocationProvider._extract_location_sample_from_log(line)
                 if tuple != None :
-                    ls = LocationSample(tuple[0], Location(tuple[1], tuple[2]))
+                    ls = LocationSample(tuple[0], Location(tuple[1], tuple[2]), "logs")
                     #print(r.groups())
                     self.__samples.append(ls)
 

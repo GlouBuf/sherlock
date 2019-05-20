@@ -30,7 +30,7 @@ class WifiLogsLocationProvider(ListLocationProvider):
             date = datetime.fromtimestamp(tstamp)
             lat = row['latitude']
             long = row['longitude']
-            ls = LocationSample(date, Location(lat, long))
+            ls = LocationSample(date, Location(lat, long), "wifi")
             self.__samples.append(ls)
 
         # Appel du constructeur de la classe mere
@@ -96,6 +96,6 @@ if __name__ == '__main__':
     lp = WifiLogsLocationProvider('../data/db/wifi.db', 'lpalmer')
     #print(" --- Liste des Locations samples de lpalmer ---")
     print(lp.print_location_samples())
-    #lp.show_location_samples()
+    lp.show_location_samples()
 
     # WifiLogsLocationProvider (source: '../data/db/wifi.db', user 'egravier', 4 location samples)

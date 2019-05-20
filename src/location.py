@@ -128,6 +128,9 @@ class LocationSample():
     def get_location(self):
         return self.__location
 
+    def get_source(self):
+        return  self.__source
+
     def spatial_distance(self, other):
         return other.distance(self.__location)
 
@@ -230,6 +233,7 @@ class LocationProvider():
                        samples]
         timestamps = [sample.get_timestamp() for sample in samples]
         data = [sample.get_description() for sample in samples]
+        source = [sample.get_source() for sample in samples]
 
         # Creating the html map, zoom in location defined by the first coordinate
         map_ = folium.Map(location=coordinates[0], zoom_start=15, detect_retina=False,
@@ -241,7 +245,7 @@ class LocationProvider():
 
         for i in range(0, len(coordinates)):
             popup = folium.Popup(folium.Html(
-                '<strong>%s</strong></br> Source: %s' % (timestamps[i].strftime('%Y-%m-%d at %I:%M:%S%p %Z'), data[i]),
+                '<strong>%s</strong></br> Source: %s' % (timestamps[i].strftime('%Y-%m-%d at %I:%M:%S%p %Z'), source[i] + data[i]),
                 script=True))
             folium.Marker(coordinates[i], popup=popup).add_to(map_)  # put markers on each and annotate with timestamps
 
