@@ -18,6 +18,10 @@ class TwitterLocationProvider(ListLocationProvider):
         self.__token_secret = token_secret
 
         #todo : aller chercher les tweet et appeler extract location sample from tweet FAIRE COMME DANS PICTURES
+
+        # TODO : faire un try / catch et afficher une message d'erreur si on arrive pas à obtenir des infos
+        # sur le compte (ex: erreur de connexion twitter)
+        # Dans énoncé du projet : Warning: Could not extract teaching isplab ’s Twitter account information ( details sur l’erreur)
         consumer_key = TwitterLocationProvider.__api_key
         consumer_secret = TwitterLocationProvider.__api_key_secret
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
