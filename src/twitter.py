@@ -12,6 +12,7 @@ import json
 class TwitterLocationProvider(ListLocationProvider):
     # TODO: Implémenter le constructeur où l'on construit une liste de LocationSample
     def __init__(self, name : str, token, token_secret):
+        # nom en clair du suspect
         self.__name = name
         self.__token = token
         self.__token_secret = token_secret
@@ -26,6 +27,8 @@ class TwitterLocationProvider(ListLocationProvider):
 
         client = tweepy.API(auth)
         user = client.me()
+
+        # nom twitter
         self.nom = user.name
         print("Nom twitter :", self.nom)
 
@@ -87,8 +90,10 @@ class TwitterLocationProvider(ListLocationProvider):
 
             print("Date local time: " + str(date))
 
-            lat = tweet.place.bounding_box.coordinates[0][0][1]
-            long = tweet.place.bounding_box.coordinates[0][0][0]
+            #lat = tweet.place.bounding_box.coordinates[0][0][1]
+            #long = tweet.place.bounding_box.coordinates[0][0][0]
+            lat = tweet.coordinates["coordinates"][1]
+            long = tweet.coordinates["coordinates"][0]
         except:
             raise ValueError(tweet.id)
             return
@@ -107,27 +112,10 @@ if __name__ == '__main__':
     TwitterLocationProvider.set_api_key_secret('gYyLCa7QiDje76VaTttlylDjGThCBGcp9MIcEGlzVq6FJcXIdc')
 
     lp = TwitterLocationProvider('1_isp','1124333850858074115-q2xK5TcnlRLGMk9QO1vMSi9RTcH6Sk','B8YQzoO01Dze2D3CaJLukuvXKRZn0VtSpPuCtYccdKYSZ')
+    print(lp)
+    print("-----")
+    lp.print_location_samples()
     lp.show_location_samples()
-
-
-
-    #lp = TwitterLocationProvider('egravier1994','996422909735391233-kLWsObS61ghUmpgS2ZXTZElQ2n5Tt9Z','BXqtUZI2pBUOgDyOVY21svUHyP8iabA98kdT4GpZlWWNC')
-    #lp = TwitterLocationProvider('egravier1994', '996422909735391233-kLWsObS61ghUmpgS2ZXTZElQ2n5Tt9Z',
-    #                             'BXqtUZI2pBUOgDyOVY21svUHyP8iabA98kdT4GpZlWWNC')
-    #lp = TwitterLocationProvider('egravier1994', 'Z4bLkruoqSp0JXJfJGTaMQEZ',
-    #                                                          'gYyLCa7QiDje76VaTttlylDjGThCBGcp9MIcEGlzVq6FJcXIdc')
-
-    # CLES VALIDES ICI (je les ai demandées à twitter), mais le code fourni ne fonctionne pas.
-    # exécute testTweepy.py tu va voir, ça ouvre une page Web chez twitter qui affiche un code que tu dois
-    # ensuite saisir pour que çà marche... et visiblement le code de tes profs
-    # date de l'an dernier et je pense que cela a changé depuis....
-    # demande moi ma clé secrete, il ne faut pas la mettre sur github
-    #lp = TwitterLocationProvider('egravier1994', 'lSjQ9ctPFYbN4UwAAKPJ2PLIh',)                                                              '')
-
-
-    #print(lp)
-    #lp.print_location_samples()
-    #lp.show_location_samples()
 
     # Warning: Skipping tweet (Missing time and/or location information (996680525313200128))
     # TwitterLocationProvider (user 'egravier1994' aka 'Émile Gravier', 11 location samples)
