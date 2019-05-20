@@ -70,7 +70,7 @@ class WifiLogsLocationProvider(ListLocationProvider):
             avant = LocationSample(date, Location(lat, long))
             #print("avant = ", avant)
 
-        # Technique SQL : on trie par ordre du plus viux au plus récent (ordre ASC) et on ne garde que le premier (limit 1)
+        # Technique SQL : on trie par ordre du plus vieux au plus récent (ordre ASC) et on ne garde que le premier (limit 1)
         query = "SELECT timestamp, latitude, longitude FROM location_samples JOIN users ON \
                 location_samples.uid == users.id JOIN hotspots ON location_samples.hid == hotspots.id WHERE users.name == '" + \
                 self.__username + "' AND  location_samples.timestamp > '" + str(ts) + \

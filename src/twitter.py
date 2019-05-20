@@ -65,7 +65,7 @@ class TwitterLocationProvider(ListLocationProvider):
 
     # TODO: Redéfinir la méthode str
     def __str__(self):
-        return "TwitterLocationProvider (source: " +  str(len(self.get_location_samples())) + " location samples)"
+        return "TwitterLocationProvider (user '" + self.__name + "' aka '" + self.nom + "', " +  str(len(self.get_location_samples())) + " location samples)"
 
     # TODO: Implémenter la méthode _extract_location_sample_from_tweet qui prend en paramètre un tweet et renvoie un tuple (temps, latitude, longitude)
     # Comme pour la méthode de Picture, vérifier que les paramètres sont bien présents dans le tweet

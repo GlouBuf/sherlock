@@ -84,19 +84,20 @@ if __name__ == '__main__':
             print("--------------------------------------")
             clp = s.get_location_provider()
 
+
             if clp != [] :
                 if clp.could_have_been_there(crime) :
                     # On le met ici car avec True comme second paramètre ça va afficher le chemin
                     #  avant - crime - apres, et si on a pas un avant ou un apres ça buggue
                     ls = clp.show_location_samples(crime, True, s.get_name() + " peut avoir commis le crime !")
 
-                    print("CONCLUSION : ", s.get_name(), "a eu le temps de commettre le crime")
+                    print("\nCONCLUSION : ", s.get_name(), "a eu le temps de commettre le crime")
                 else :
                     ls = clp.show_location_samples(crime, True, s.get_name() + " n'a pas pu commettre le crime !")
 
-                    print("CONCLUSION : ", s.get_name(), "n'a pas eu le temps de commettre le crime ou bien nous ne disposons pas de suffisement d'information")
+                    print("\nCONCLUSION : ", s.get_name(), "n'a pas eu le temps de commettre le crime ou bien nous ne disposons pas de suffisement d'information")
             else :
-                print("CONCLUSION : ", s.get_name(), "n'a pas de location provider")
+                print("\nCONCLUSION : ", s.get_name(), "n'a pas de location provider")
 
 
     #except Exception as e :

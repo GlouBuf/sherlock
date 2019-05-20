@@ -65,12 +65,18 @@ class Suspect:
                 for source in l :
                     if source["type"] == "Twitter" :
                         el = TwitterLocationProvider(name, source["token"], source["token-secret"])
+                        print("On traite ses tweets...", len(el.get_location_samples()), "tweets exploitables.")
                     elif source["type"] == "Photographs" :
                         el = PictureLocationProvider(source["dir"])
+                        print("On traite ses photos...", len(el.get_location_samples()), "photos exploitables.")
                     elif source["type"] == "Wi-Fi" :
                         el = WifiLogsLocationProvider(source["db"], source["username"])
+                        print("On traite ses traces de connexion wifi...", len(el.get_location_samples()), "traces exploitables.")
                     elif source["type"] == "Logs" :
                         el = LogsLocationProvider(source["file"])
+                        print("On traite ses logs de téléphone...", len(el.get_location_samples()), "lignes de logs exploitables.")
+
+
                     list_lp.append(el)
 
                 # composite location provider
