@@ -180,8 +180,7 @@ class LocationSample():
         stateHTML = stateHTML + " Lat : " +  str(self.__location.get_latitude()) + "</li></ul>"
 
         if self.__imageURL != None :
-            stateHTML = stateHTML + "<img src= '"+ os.getcwd() + "/" + self.__imageURL + "' width=200 height=200>"
-            print(stateHTML)
+            stateHTML = stateHTML + "<img src= '"+ os.getcwd() + "/" + self.__imageURL + "' width=200 >"
 
         return stateHTML
 

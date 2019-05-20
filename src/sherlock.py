@@ -53,8 +53,9 @@ if __name__ == '__main__':
 
 
         # TODO: Afficher le message d'accueil du logiciel
+        print("-------------------------------------------------------------")
         print("Investigation liée au crime du " + str(date_crime) + " @" + str(lieu_crime.get_name()))
-
+        print("-------------------------------------------------------------")
 
         # TODO: Lire le fichier suspect, l'analyser, construire les objets Suspect correspondants et les stocker dans une liste. Utiliser les méthodes createObjectFromXMLFile() / createObjectFromJSONFile()
         suspects = Suspect.create_suspects_from_JSON_file(args.suspect)

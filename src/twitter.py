@@ -89,10 +89,8 @@ class TwitterLocationProvider(ListLocationProvider):
             # la version en bas du post.
             # On a mis la fonction dans utils.py
             dateUTC = tweet.created_at
-            print("Date UTC = " + str(dateUTC))
             date = utc2local(dateUTC)
 
-            print("Date local time: " + str(date))
 
             #lat = tweet.place.bounding_box.coordinates[0][0][1]
             #long = tweet.place.bounding_box.coordinates[0][0][0]
