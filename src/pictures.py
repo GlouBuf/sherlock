@@ -9,6 +9,7 @@ import exifread
 from _datetime import *
 from datetime import datetime, timezone, timedelta
 from configuration import *
+from logging_utils import *
 
 
 # TODO: Définir la classe PictureLocationProvider qui désigne des objets LocationProvider obtenus à partir d'images
@@ -31,7 +32,7 @@ class PictureLocationProvider(ListLocationProvider):
                         ls = LocationSample(elements_de_ls[0], location_de_ls, "Picture", photo)  # on crée un LocationSample
                         __samples.append(ls)
                     except ValueError :
-                        print("PAS DE DONNEES EXIF DANS L'image " + fichier.name + " fichier ignoré : on passe au fichier suivant.")
+                        log("PAS DE DONNEES EXIF DANS L'image " + fichier.name + " fichier ignoré : on passe au fichier suivant.")
 
 
         super().__init__(__samples)

@@ -31,7 +31,7 @@ if __name__ == '__main__':
 
 
         # TODO: Stocker les paramètres importants dans un objet Configuration accessible depuis tous les modules du programme
-        conf = Configuration()
+        conf = Configuration().get_instance()
         conf.add_element("verbose", args.verbose)
         conf.add_element("suspects", args.suspect) #todo : vérifier que le nom du fichier est bien xx.json
         conf.add_element("twitter_api_key", args.twitter_api_key)

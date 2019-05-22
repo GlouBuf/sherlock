@@ -7,6 +7,8 @@ from configuration import *
 import html
 from datetime import datetime, timezone, timedelta
 import json
+from logging_utils import *
+
 
 # TODO: Définir la classe TwitterLocationProvider
 class TwitterLocationProvider(ListLocationProvider):
@@ -43,17 +45,15 @@ class TwitterLocationProvider(ListLocationProvider):
 
         for tweet in public_tweets:
             try :
-                #print(tweet.text)
                 tuple = self._extract_location_sample_from_tweet(tweet)
                 date = tuple[0]
                 lat = tuple[1]
                 long = tuple[2]
 
                 ls = LocationSample(date, Location(lat, long), "twitter")
-                #print(ls)
                 self.__samples.append(ls)
             except ValueError as e:
-                print("Warning: Skipping tweet (Missing time and/or location information (" + str(e) + "))")
+                log("Warning: Skipping tweet (Missing time and/or location information (" + str(e) + "))")
 
         # Appel du constructeur de la classe mere
         super().__init__(self.__samples)
