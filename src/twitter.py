@@ -13,11 +13,12 @@ from logging_utils import *
 # TODO: Définir la classe TwitterLocationProvider
 class TwitterLocationProvider(ListLocationProvider):
     # TODO: Implémenter le constructeur où l'on construit une liste de LocationSample
-    def __init__(self, name : str, token, token_secret):
+    def __init__(self, name : str, token, token_secret, nom = "Pas initialisé"):
         # nom en clair du suspect
         self.__name = name
         self.__token = token
         self.__token_secret = token_secret
+        self.nom = nom
 
         #todo : aller chercher les tweet et appeler extract location sample from tweet FAIRE COMME DANS PICTURES
 
@@ -26,37 +27,46 @@ class TwitterLocationProvider(ListLocationProvider):
         # Dans énoncé du projet : Warning: Could not extract teaching isplab ’s Twitter account information ( details sur l’erreur)
         consumer_key = TwitterLocationProvider.__api_key
         consumer_secret = TwitterLocationProvider.__api_key_secret
-        auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-
-        # set access token
-        auth.set_access_token(self.__token, self.__token_secret)
-
-        client = tweepy.API(auth)
-        user = client.me()
-
-        # nom twitter
-        self.nom = user.name
-        print("Nom twitter :", self.nom)
-
-        public_tweets = client.user_timeline()
-
         self.__samples = []
-        tuple = None
 
-        for tweet in public_tweets:
-            try :
-                tuple = self._extract_location_sample_from_tweet(tweet)
-                date = tuple[0]
-                lat = tuple[1]
-                long = tuple[2]
 
-                ls = LocationSample(date, Location(lat, long), "twitter")
-                self.__samples.append(ls)
-            except ValueError as e:
-                log("Warning: Skipping tweet (Missing time and/or location information (" + str(e) + "))")
+        try :
+            log("Connexion au compte twitter de " + str(self.__name))
+            auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+
+            # set access token
+            auth.set_access_token(self.__token, self.__token_secret)
+
+            client = tweepy.API(auth)
+            user = client.me()
+
+            # nom twitter
+            self.nom = user.name
+            log("Connexion twitter réussie, Pseudo twitter : " + str(self.nom))
+            log("Récupération et analyse des tweets en cours...")
+
+            public_tweets = client.user_timeline()
+
+            tuple = None
+
+            for tweet in public_tweets:
+                try :
+                    tuple = self._extract_location_sample_from_tweet(tweet)
+                    date = tuple[0]
+                    lat = tuple[1]
+                    long = tuple[2]
+
+                    ls = LocationSample(date, Location(lat, long), "twitter")
+                    self.__samples.append(ls)
+                except ValueError as e:
+                    log("Warning: Skipping tweet (Missing time and/or location information (" + str(e) + "))")
+
+        except Exception :
+            log("Impossible de se connecter au compte twitter de " + str(self.__name) + " avec les clés et token donnés")
 
         # Appel du constructeur de la classe mere
         super().__init__(self.__samples)
+        log("Fin de l'analyse.")
 
 
 
@@ -96,6 +106,7 @@ class TwitterLocationProvider(ListLocationProvider):
             #long = tweet.place.bounding_box.coordinates[0][0][0]
             lat = tweet.coordinates["coordinates"][1]
             long = tweet.coordinates["coordinates"][0]
+            log("Tweet " + str(tweet.id) + " date : " + str(date) + ", Longitude : " + str(long) + ", Latitude : " + str(lat))
         except:
             raise ValueError(tweet.id)
             return
@@ -110,8 +121,13 @@ if __name__ == '__main__':
 
     # Tester l'implémentation de cette classe avec les instructions de ce bloc main (le résultat attendu est affiché ci-dessous)
     Configuration.get_instance().add_element("verbose", True)
-    TwitterLocationProvider.set_api_key('Z4bLkruoqSp0JXJfJGTaMQEZo')
-    TwitterLocationProvider.set_api_key_secret('gYyLCa7QiDje76VaTttlylDjGThCBGcp9MIcEGlzVq6FJcXIdc')
+
+    # Tester l'implémentation de cette classe avec les instructions de ce bloc main (le résultat attendu est affiché ci-dessous)
+    # -t Z4bLkruoqSp0JXJfJGTaMQEZo -u gYyLCa7QiDje76VaTttlylDjGThCBGcp9MIcEGlzVq6FJcXIdc -g AIzaSyBsgJp_3ElinD9-T5r2Fbcg0AABR7caito -lat 46.522662 -lng 6.577305 -d "06/05/2019 10:19:23" -s "../data/suspects.json"
+
+    Location.set_api_key("AIzaSyBsgJp_3ElinD9-T5r2Fbcg0AABR7caito")
+    TwitterLocationProvider.set_api_key("Z4bLkruoqSp0JXJfJGTaMQEZo")
+    TwitterLocationProvider.set_api_key_secret("gYyLCa7QiDje76VaTttlylDjGThCBGcp9MIcEGlzVq6FJcXIdc")
 
     lp = TwitterLocationProvider('1_isp','1124333850858074115-q2xK5TcnlRLGMk9QO1vMSi9RTcH6Sk','B8YQzoO01Dze2D3CaJLukuvXKRZn0VtSpPuCtYccdKYSZ')
     print(lp)

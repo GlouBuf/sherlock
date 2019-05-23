@@ -21,22 +21,29 @@ class PictureLocationProvider(ListLocationProvider):
         __samples = []
         # TODO: scanner le répertoire contenant les photos prises par le suspect et extraire un objet LocationSample pour les photos ayant une extension valide (et qui contiennent des informations de localisation)
         liste_suffix = [".jpg", ".jpeg", ".JPG", ".JPEG"]
-        for fichier in os.scandir(directory) :
-            for suffix in liste_suffix:
-                if fichier.name.endswith(suffix):
-                    source_pic_file = str(fichier)
-                    try :
-                        photo = os.path.join(self.__dir, fichier.name)
-                        elements_de_ls = PictureLocationProvider._extract_location_sample_from_picture(photo) #on obtient un datetime, une latitude et une longitude
-                        location_de_ls = Location(elements_de_ls[1], elements_de_ls[2])
-                        ls = LocationSample(elements_de_ls[0], location_de_ls, "Picture", photo)  # on crée un LocationSample
-                        __samples.append(ls)
-                    except ValueError :
-                        log("PAS DE DONNEES EXIF DANS L'image " + fichier.name + " fichier ignoré : on passe au fichier suivant.")
 
+        try :
+            for fichier in os.scandir(directory) :
+                for suffix in liste_suffix:
+                    if fichier.name.endswith(suffix):
+                        source_pic_file = str(fichier)
+                        try :
+                            log("analyse de la photo : " + str(fichier.name))
+                            photo = os.path.join(self.__dir, fichier.name)
+                            elements_de_ls = PictureLocationProvider._extract_location_sample_from_picture(photo) #on obtient un datetime, une latitude et une longitude
+                            location_de_ls = Location(elements_de_ls[1], elements_de_ls[2])
+                            ls = LocationSample(elements_de_ls[0], location_de_ls, "Picture", photo)  # on crée un LocationSample
+                            __samples.append(ls)
+                            log("Location sample trouvée : " + str(ls))
+                        except ValueError :
+                            log("PAS DE DONNEES EXIF DANS L'image " + fichier.name + " fichier ignoré : on passe au fichier suivant.")
+
+
+        except Exception :
+            log("Erreur lors de l'ouverture du répertoire " + str(directory) + " --> On ne peut pas analyser les photos." )
 
         super().__init__(__samples)
-
+        log("Fin de l'analyse.")
 
     # TODO: Définir les extensions valides et un getter pour y accéder
     def get_list_valid_extensions(self):
@@ -89,7 +96,7 @@ class PictureLocationProvider(ListLocationProvider):
                 except ValueError as e:
                     #print("bad timestamp value, let's check and fix them in case they are of type exifread.utils.Ratio")
                     #print("that cannot be converted using datetime.strptime(...) ex [9, 9, 645/24]")
-                    print("Converted timestamp values from Ratio to int")
+                    log("Converted timestamp values from Ratio to int")
                     timestamp = PictureLocationProvider.fix_timestamp_values(timestamp)
 
                     ltimestamp = datetime.strptime(str(timestamp), "[%H, %M, %S]")
@@ -127,6 +134,8 @@ if __name__ == '__main__':
     pass
     # Tester l'implémentation de cette classe avec les instructions de ce bloc main (le résultat attendu est affiché ci-dessous)
     Configuration.get_instance().add_element("verbose", True)
+    Location.set_api_key('AIzaSyBsgJp_3ElinD9-T5r2Fbcg0AABR7caito')
+
     lp = PictureLocationProvider('../data/pics/bhorne')
     print(lp)
     lp.show_location_samples()

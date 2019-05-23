@@ -14,6 +14,8 @@ from math import asin, sqrt, sin, cos, radians
 from _datetime import *
 import copy
 from utils import *
+from logging_utils import *
+
 
 # TODO: Définir la classe Location désignant des objets contenant une latitude et une longitude
 class Location():
@@ -50,10 +52,14 @@ class Location():
         if not Location.__check_api_init():
             #print("INIT")
             Location.__api_key = key
-            Location.__gmaps_client = googlemaps.Client(Location.__api_key)
+            try :
+                log("tentative de connexion à l'api googlemaps ...")
+                Location.__gmaps_client = googlemaps.Client(Location.__api_key)
+                log("Connecté.")
+            except Exception :
+                log("Erreur de connexion à google map, clef sans doute invalide : " + str(key))
         else:
-            #print("DEJA INIT")
-            pass
+            log("Déjà connecté à googlemap.")
 
 
     @staticmethod
@@ -81,26 +87,42 @@ class Location():
         #googlemaps.configure(self.__api_key)
         lat = self.__latitude
         long = self.__longitude
-        destination = Location.__gmaps_client.reverse_geocode((lat, long))
-        adresse = destination[0]["formatted_address"] + "," + " pour " + str(lat) + ", " + str(long)
+        log("Utilisation du service de reverse geocoding avec longitude/latitude ...")
+        adresse = None
+
+        try :
+            destination = Location.__gmaps_client.reverse_geocode((lat, long))
+            adresse = destination[0]["formatted_address"] + "," + " pour " + str(lat) + ", " + str(long)
+            log("Adresse obtenue : " + str(adresse))
+        except Exception :
+            log("Impossible de se connecter au service.")
+
         return adresse
 
 
     # TODO: Implémenter la méthode get_travel_distance_and_time qui renvoie le couple (distance, temps) pour atteindre le lieu correspondant à un autre objet Location
     def get_travel_distance_and_time(self, other):
+        log("Calcul de la distance et du temps pour aller de : " + str(self) + " à " + str(other))
         latlong_arrivee = (self.__latitude, self.__longitude)
         latlong_depart = (other.__latitude, other.__longitude)
         arrivee = [latlong_arrivee]
         depart = [latlong_depart]
+        distance = None
+        temps_reel = None
 
+        log("Connexion au service  distance_matrix ...")
+        try :
+            results = Location.__gmaps_client.distance_matrix(origins=depart, destinations=arrivee, mode="walking")
+            # print(results)
+            distance = results['rows'][0]['elements'][0]['distance']['value'] #en m
+            temps = results['rows'][0]['elements'][0]['duration']['value'] #en seconde
+            temps_reel = temps / 2
 
-        results = Location.__gmaps_client.distance_matrix(origins=depart, destinations=arrivee, mode="walking")
-        # print(results)
-        distance = results['rows'][0]['elements'][0]['distance']['value'] #en m
-        temps = results['rows'][0]['elements'][0]['duration']['value'] #en seconde
-        temps_reel = temps / 2
+            log("distance = " + str(distance) + " et Temps = " + str(temps_reel))
 
-        return (distance, temps_reel)
+            return (distance, temps_reel)
+        except Exception :
+            log("Impossible d'utiliser distance_matrix.")
 
 
 # TODO: Définir la classe LocationSample désignant des objets contenant un datetime et un objet Location
@@ -347,43 +369,47 @@ class LocationProvider():
         if (ls1 == None or ls2 == None) :
             return False
 
+        try :
+            #calcul du temps pour aller de avant jusqu'au lieu du crime
+            dist_et_temps1 = ls1.get_location().get_travel_distance_and_time(lieu_crime)
+            temps1 = dist_et_temps1[1]
 
-        #calcul du temps pour aller de avant jusqu'au lieu du crime
-        dist_et_temps1 = ls1.get_location().get_travel_distance_and_time(lieu_crime)
-        temps1 = dist_et_temps1[1]
+            #calcul du temps pour aller du crime à après
+            dist_et_temps2 = lieu_crime.get_travel_distance_and_time(ls2.get_location())
+            temps2 = dist_et_temps2[1]
 
-        #calcul du temps pour aller du crime à après
-        dist_et_temps2 = lieu_crime.get_travel_distance_and_time(ls2.get_location())
-        temps2 = dist_et_temps2[1]
+            #temps entre avant et crime
+            delta_t1 = (crime.get_timestamp() - ls1.get_timestamp()).total_seconds()
 
-        #temps entre avant et crime
-        delta_t1 = (crime.get_timestamp() - ls1.get_timestamp()).total_seconds()
+            #temps entre crime et après
+            delta_t2 = (ls2.get_timestamp() - crime.get_timestamp()).total_seconds()
 
-        #temps entre crime et après
-        delta_t2 = (ls2.get_timestamp() - crime.get_timestamp()).total_seconds()
+            # on renvoie true si on a eu le temps pour aller jusqu'au crime et le temps pour en revenir
+            #sinon on renvoie false
+            print("temps1 gmap pour déplacement de avant jq crime) =", sec2time(temps1), "delta_t1 (date crime - date avant) =", sec2time(delta_t1))
+            possible1 = (temps1 - delta_t1) < 0
 
-        # on renvoie true si on a eu le temps pour aller jusqu'au crime et le temps pour en revenir
-        #sinon on renvoie false
-        print("temps1 gmap pour déplacement de avant jq crime) =", sec2time(temps1), "delta_t1 (date crime - date avant) =", sec2time(delta_t1))
-        possible1 = (temps1 - delta_t1) < 0
+            if(possible1):
+                msg1 = "POSSIBLE"
+            else:
+                msg1 = "IMPOSSIBLE"
 
-        if(possible1):
-            msg1 = "POSSIBLE"
-        else:
-            msg1 = "IMPOSSIBLE"
-
-        print("Déplacement avant -> crime", msg1, "(" + sec2time(temps1) + " < " + sec2time(delta_t1))
+            print("Déplacement avant -> crime", msg1, "(" + sec2time(temps1) + " < " + sec2time(delta_t1))
 
 
-        print("temps2 gmap pour déplacement crime jq après) =", sec2time(temps2), "delta_t2 (date après - date crime) =", sec2time(delta_t2))
-        possible2 = (temps2 - delta_t2) < 0
+            print("temps2 gmap pour déplacement crime jq après) =", sec2time(temps2), "delta_t2 (date après - date crime) =", sec2time(delta_t2))
+            possible2 = (temps2 - delta_t2) < 0
 
-        if (possible2):
-            msg2 = "POSSIBLE"
-        else:
-            msg2 = "IMPOSSIBLE"
+            if (possible2):
+                msg2 = "POSSIBLE"
+            else:
+                msg2 = "IMPOSSIBLE"
 
-        print("Déplacement crime -> après", msg2, "(" + sec2time(temps2) + " < " + sec2time(delta_t2))
+            print("Déplacement crime -> après", msg2, "(" + sec2time(temps2) + " < " + sec2time(delta_t2))
+        except Exception :
+            log("Impossible de calculer la distance et le temps.")
+            return False
+
 
         # Crime possible pour ce suspect si il a pu se rendre de avant jq crime et de crime jq apres
         return (possible1 and possible2)
@@ -433,7 +459,13 @@ class ListLocationProvider(LocationProvider):
 if __name__ == '__main__':
     # Tester l'implémentation de cette classe avec les instructions de ce bloc main (le résultat attendu est affiché ci-dessous)
     # Configuration.get_instance().add_element("verbose", True)
-    Location.set_api_key('AIzaSyBsgJp_3ElinD9-T5r2Fbcg0AABR7caito')
+    Configuration.get_instance().add_element("verbose", True)
+
+    # Tester l'implémentation de cette classe avec les instructions de ce bloc main (le résultat attendu est affiché ci-dessous)
+    # -t Z4bLkruoqSp0JXJfJGTaMQEZo -u gYyLCa7QiDje76VaTttlylDjGThCBGcp9MIcEGlzVq6FJcXIdc -g AIzaSyBsgJp_3ElinD9-T5r2Fbcg0AABR7caito -lat 46.522662 -lng 6.577305 -d "06/05/2019 10:19:23" -s "../data/suspects.json"
+
+    Location.set_api_key("AAIzaSyBsgJp_3ElinD9-T5r2Fbcg0AABR7caito")
+
 
     paris = Location(48.854788, 2.347557)
 
@@ -472,6 +504,7 @@ if __name__ == '__main__':
 
     print("avant : ", result[0])
     print("apres : ", result[1])
+
 
     # Test composite
     locationsamples2 = ListLocationProvider([crime])
